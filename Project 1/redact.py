@@ -7,7 +7,7 @@ from urllib.request import urlopen
 def messageDecoder():
     FoaasAPI = 'foaas.com' # foaas api address
     FoaasAPIpath = sys.argv[1] # gets FOAAS path+name
-    PurgoAPI = 'https://www.purgomalum.com/service'
+    PurgoAPI = 'https://www.purgomalum.com/service' # purgo api address
 
     # requesting JSON data
     connect1 = http.client.HTTPSConnection(FoaasAPI)
