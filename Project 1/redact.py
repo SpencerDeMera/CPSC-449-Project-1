@@ -68,11 +68,6 @@ class HTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         encoded = urllib.parse.quote(jsonData1['message'])  # encodes value for webAddress
         encodedURL = '/json?text=' + encoded
 
-        # DOES NOT work for some reason :/
-        # connect2 = http.client.HTTPSConnection(PurgoAPI)
-        # connect2.request('GET', encodedURL, headers=header)
-        # response2 = connect2.getresponse().read()
-
         # Request and retreive censored FOAAS 'message'
         response2 = urlopen(PurgoAPI + encodedURL).read()
         jsonData2 = json.loads(response2)
