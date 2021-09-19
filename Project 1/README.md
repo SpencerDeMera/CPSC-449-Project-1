@@ -7,3 +7,11 @@
 * File README.md. README file for the project.<br>
 * File redact.py. Main program file for the project.
 
+## Installation & Running
+* Extract the .tar file into a new folder.
+* Open a terminal or command prompt
+* Enter `python3 redact.py <the desired FOAAS path>`
+* Output should display in terminal then bowser
+
+## Issues
+
