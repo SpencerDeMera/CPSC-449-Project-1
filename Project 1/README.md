@@ -11,6 +11,7 @@
 * Extract the .tar file into a new folder.
 * Open a terminal or command prompt
 * Enter `python3 redact.py <the desired FOAAS path>`
+     * EX: `python3 redact.py /because/name`  
 * Output should display in terminal then bowser
 
 ## Issues
