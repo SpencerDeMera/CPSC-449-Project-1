@@ -10,9 +10,11 @@
 ## Installation & Running
 * Extract the .tar file into a new folder.
 * Open a terminal or command prompt
-* Enter `python3 redact.py <the desired FOAAS path>`
-     * EX: `python3 redact.py /because/name`  
-* Output should display in terminal then bowser
+* Enter `python3 redact.py`
+* Output should display localhost port in output
+* Open a broswer window and got to `localhost:<given PORT number>`
+* Complete the browser query with disired FOAAS path.
+    * i.e. `localhost:8080/because/name` 
 
 ## Issues
 
