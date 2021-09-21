@@ -13,29 +13,29 @@ class HTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Content-Type', 'text/html; charset=utf-8')
         self.end_headers()
-        FoaasAPI = 'foaas.com'  # foaas api address
-        FoaasAPIpath = self.path  # gets FOAAS path+name
-        PurgoAPI = 'https://www.purgomalum.com/service'  # purgo api address
+        FoaasAPI = 'foaas.com'                                      # foaas api web address
+        FoaasAPIpath = self.path                                    # gets FOAAS path+name
+        PurgoAPI = 'https://www.purgomalum.com/service'             # purgo api web address
 
         # requesting JSON data
-        connect1 = http.client.HTTPSConnection(FoaasAPI)
-        header = {'Accept': 'application/json'}
-        connect1.request('GET', FoaasAPIpath, headers=header)
+        connect1 = http.client.HTTPSConnection(FoaasAPI)            # applies HTTPS connection to FoaasAPI 
+        header = {'Accept': 'application/json'}                     # header for https request to Accpet json as a response
+        connect1.request('GET', FoaasAPIpath, headers=header)       # Requests /GET with given https connection & path/extension
 
         # Retreive FOAAS json data
-        response1 = connect1.getresponse().read()
-        jsonData1 = json.loads(response1.decode())
+        response1 = connect1.getresponse().read()                   # Reads JSON response from connect1
+        jsonData1 = json.loads(response1.decode())                  # decodes and loads response1 into a python string dictionary 'jsonData1'
 
         # Encode and concat Purgo URL
-        encoded = urllib.parse.quote(jsonData1['message'])  # encodes value for webAddress
-        encodedURL = '/json?text=' + encoded
-
+        encoded = urllib.parse.quote(jsonData1['message'])          # encodes value for webAddress
+        encodedURL = '/json?text=' + encoded                        # Concats encoded message to the purgoAPI /GET path
+                                                                    # EX => '/json?text=Why?%20Because%20Fuck%20You,%20that's%20why.'
         # Request and retreive censored FOAAS 'message'
-        response2 = urlopen(PurgoAPI + encodedURL).read()
-        jsonData2 = json.loads(response2)
+        response2 = urlopen(PurgoAPI + encodedURL).read()           # Reads JSON respons from URL opened at 'https://www.purgomalum.com/service/json?text=Why?%20Because%20Fuck%20You,%20that's%20why.'
+        jsonData2 = json.loads(response2)                           # decodes and loads response2 into a python string dictionary 'jsonData2'      
 
         # Swap censored 'message' into jsonData1
-        jsonData1['message'] = jsonData2['result']
+        jsonData1['message'] = jsonData2['result']                  # Replaces 'message' in jsonData1 with censored 'message' in jsonData2
         message = jsonData1['message']
         subtitle = jsonData1['subtitle']
         payload = (f'<!DOCTYPE html> <html> <head> <title>FOAAS - FUCK OFF, TOM. - EVERYONE</title> <meta charset="utf-8">'
