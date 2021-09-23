@@ -11,7 +11,7 @@
 * File redact.py. Main program file for the project.
 
 ## Installation & Running
-* Extract the .tar file into a new folder.
+* Unpack the .tar.gz file into a new folder.
 * Open a terminal or command prompt.
 * Enter run the redact.py file via `python3 redact.py`
 * Output should display localhost port.
