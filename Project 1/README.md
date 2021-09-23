@@ -13,7 +13,8 @@
 ## Installation & Running
 * Unpack the .tar.gz file into a new folder.
 * Open a terminal or command prompt.
-* Enter run the redact.py file via `python3 redact.py`
+* Enter the redact.py file & add a FOAAS API path via `python3 redact.py /path/from`
+    * Example `python3 redact.py /because/Joe`
 * Output should display localhost port.
 * Open a broswer window and go to `localhost:<given PORT number>`
 * Complete the browser query with desired FOAAS path.
