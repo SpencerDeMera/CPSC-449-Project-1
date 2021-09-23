@@ -18,3 +18,7 @@
 * Open a broswer window and go to `localhost:<given PORT number>`
 * Complete the browser query with desired FOAAS path.
     * Example `localhost:8080/because/name`
+
+## Errors & Bugs
+* Server displays Python `UnicodeDecodeError: 'utf-8' codec can't decode byte 0x8b in position 62: invalid start byte`
+    * This is due to included html/bootstrap from FOAAS output server

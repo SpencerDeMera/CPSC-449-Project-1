@@ -8,6 +8,38 @@ import socketserver
 
 PORT = 8080
 
+def terminalDisplay():
+    FoaasAPI = 'foaas.com'                                      # foaas api web address
+    FoaasAPIpath = sys.argv[1]                                  # gets FOAAS path+name
+    PurgoAPI = 'https://www.purgomalum.com/service'             # purgo api web address
+
+    # requesting JSON data
+    connect1 = http.client.HTTPSConnection(FoaasAPI)            # applies HTTPS connection to FoaasAPI 
+    header = {'Accept': 'application/json'}                     # header for https request to Accpet json as a response
+    connect1.request('GET', FoaasAPIpath, headers=header)       # Requests /GET with given https connection & path/extension
+
+    # Retreive FOAAS json data
+    response1 = connect1.getresponse().read()                   # Reads JSON response from connect1
+    jsonData1 = json.loads(response1.decode())                  # decodes and loads response1 into a python string dictionary 'jsonData1'
+
+    # Encode and concat Purgo URL
+    encoded = urllib.parse.quote(jsonData1['message'])          # encodes value for webAddress
+    encodedURL = '/json?text=' + encoded                        # Concats encoded message to the purgoAPI /GET path
+                                                                # EX => '/json?text=Why?%20Because%20Fuck%20You,%20that's%20why.'
+    # Request and retreive censored FOAAS 'message'
+    response2 = urlopen(PurgoAPI + encodedURL).read()           # Reads JSON respons from URL opened at 'https://www.purgomalum.com/service/json?text=Why?%20Because%20Fuck%20You,%20that's%20why.'
+    jsonData2 = json.loads(response2)                           # decodes and loads response2 into a python string dictionary 'jsonData2'      
+
+    # Swap censored 'message' into jsonData1
+    jsonData1['message'] = jsonData2['result']                  # Replaces 'message' in jsonData1 with censored 'message' in jsonData2
+
+    # print censored jsonData1 
+    print(json.dumps(jsonData1, indent=4))
+
+terminalDisplay()
+
+print() # Adds spacing between terminal output and PORT display
+
 class HTTPRequestHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
