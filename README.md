@@ -5,7 +5,7 @@
 
 ## Description
 
-This is a main repo for our various Back-End Engineering projects done in CSUF's CPSC 449 class
+This is a main repo for our various Back-End Engineering projects done in CSUF's CPSC 449 class.
 
 - - - -
 
