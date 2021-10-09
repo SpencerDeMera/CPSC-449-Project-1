@@ -12,3 +12,5 @@ This is a main repo for our various Back-End Engineering projects done in CSUF's
 ## Technologies Used
 
 * Python3
+* Hug
+* sqlite_utils
