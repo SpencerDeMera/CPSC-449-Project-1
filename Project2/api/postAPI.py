@@ -55,10 +55,10 @@ def getPost(response, author_username: hug.types.text, db: sqlite):
 # retunrs JSON array of all posts
 @hug.get("/posts/all")
 def getAllPosts(response, db: sqlite):
-    postArr = [] # JSON array for storing each user object
+    postArr = [] # JSON array for storing each post object
 
     try:
-        posts = sqlite_utils.Database("posts.db") # gets table 'users'
+        posts = sqlite_utils.Database("posts.db") # gets table 'posts'
         for row in db["posts"].rows:
             postArr.append(row)
     except sqlite_utils.db.NotFoundError:
