@@ -1,4 +1,10 @@
-import hug # hug -f api.py
+# run hug server: hug -f api.py
+
+import configparser
+import logging.config
+
+import hug
+import sqlite_utils
 
 # Users: 
 #   Attributes: usernames, bio, email, password
@@ -10,15 +16,51 @@ import hug # hug -f api.py
 #   Attributes: user (user Posts), home (followed users), public (all users)
 #   (Reverse chronological order, newest first)
 
-@hug.get('/user/{username}')
-def user(username: str):
-    '''returns userdata of given user'''
-    
-    if username == 'ty37':
-        data = 'Tyler Revay'
-    if username == 'steph15':
-        data = 'Stephanie Wilkinson'
-    if username == 'spritce718':
-        data = 'Spencer DeMera'
+# Parser configuator function 
+#   Code provided by instructor
+config = configparser.ConfigParser()
+config.read("./configs/userAPI.ini")
+logging.config.fileConfig(config["logging"]["config"], disable_existing_loggers=False)
 
-    return '{data} -> {username}'.format(**locals())
+# hug directive functions for SQLite initialization & logging
+#   Code provided by instructor
+@hug.directive()
+def sqlite(section="sqlite", key="dbfile", **kwargs):
+    dbfile = config[section][key]
+    return sqlite_utils.Database(dbfile)
+
+# hug directive functions for SQLite initialization & logging
+#   Code provided by instructor
+@hug.directive()
+def log(name=__name__, **kwargs):
+    return logging.getLogger(name)
+
+# sets /users/
+@hug.get("/users/")
+def users(db: sqlite):
+    return {"users": db["users"].rows}
+
+# returns JSON of specific user w/ username : <input username>
+@hug.get("/users/{username}")
+def getUser(response, username: hug.types.text, db: sqlite):
+    users = [] # JSON for storing all user data (username, password, email, bio)
+
+    try:
+        user = db["users"].get(username)
+        users.append(user)
+    except sqlite_utils.db.NotFoundError:
+        response.status = hug.falcon.HTTP_404
+    return {"users": user}
+
+# retunrs JSON array of all users
+@hug.get("/users/all")
+def getAllUsers(response, db: sqlite):
+    userArr = [] # JSON array for storing each user object
+
+    try:
+        users = sqlite_utils.Database("users.db") # gets table 'users'
+        for row in db["users"].rows:
+            userArr.append(row)
+    except sqlite_utils.db.NotFoundError:
+        response.status = hug.falcon.HTTP_404
+    return {"users": userArr}
