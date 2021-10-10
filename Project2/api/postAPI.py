@@ -41,16 +41,19 @@ def posts(db: sqlite):
     return {"posts": db["posts"].rows}
 
 # returns JSON of specific post w/ author_username : <input author username>
-@hug.get("/posts/{author_username}")
-def getPost(response, author_username: hug.types.text, db: sqlite):
-    posts = [] # JSON for storing all post data (author_username, message, human_timestamp, timestamp, origin_URL)
+@hug.get("/posts/{authorUsername}")
+def getPost(response, authorUsername: hug.types.text, db: sqlite):
+    postArr = [] # JSON array for storing all post objects of the given author
 
     try:
-        post = db["posts"].get(author_username)
-        posts.append(post)
+        posts = sqlite_utils.Database("./data/posts.db")
+        for row in posts.query(
+            "SELECT * FROM posts WHERE author_username=?", (authorUsername,)
+        ):
+            postArr.append(row)
     except sqlite_utils.db.NotFoundError:
         response.status = hug.falcon.HTTP_404
-    return {"posts": post}
+    return {"posts": postArr}
 
 # retunrs JSON array of all posts
 @hug.get("/posts/all")
@@ -58,8 +61,7 @@ def getAllPosts(response, db: sqlite):
     postArr = [] # JSON array for storing each post object
 
     try:
-        posts = sqlite_utils.Database("posts.db") # gets table 'posts'
-        for row in db["posts"].rows:
+        for row in db["./data/posts"].rows:
             postArr.append(row)
     except sqlite_utils.db.NotFoundError:
         response.status = hug.falcon.HTTP_404
