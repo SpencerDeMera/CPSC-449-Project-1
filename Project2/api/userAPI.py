@@ -43,10 +43,8 @@ def users(db: sqlite):
 # returns JSON of specific user w/ username : <input username>
 @hug.get("/users/{username}")
 def getUser(response, username: hug.types.text, db: sqlite):
-    users = [] # JSON for storing all user data (username, password, email, bio)
-
     try:
-        user = db["./data/users"].get(username)
+        user = db["users"].get(username)
         users.append(user)
     except sqlite_utils.db.NotFoundError:
         response.status = hug.falcon.HTTP_404
@@ -58,7 +56,7 @@ def getAllUsers(response, db: sqlite):
     userArr = [] # JSON array for storing each user object
 
     try:
-        for row in db["./data/sers"].rows:
+        for row in db["users"].rows:
             userArr.append(row)
     except sqlite_utils.db.NotFoundError:
         response.status = hug.falcon.HTTP_404

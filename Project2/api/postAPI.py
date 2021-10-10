@@ -61,7 +61,7 @@ def getAllPosts(response, db: sqlite):
     postArr = [] # JSON array for storing each post object
 
     try:
-        for row in db["./data/posts"].rows:
+        for row in db["posts"].rows:
             postArr.append(row)
     except sqlite_utils.db.NotFoundError:
         response.status = hug.falcon.HTTP_404
