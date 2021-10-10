@@ -43,8 +43,6 @@ def users(db: sqlite):
 # returns JSON of specific user w/ username : <input username>
 @hug.get("/users/{username}")
 def getUser(response, username: hug.types.text, db: sqlite):
-    users = [] # JSON for storing all user data (username, password, email, bio)
-
     try:
         user = db["./data/users"].get(username)
         users.append(user)
