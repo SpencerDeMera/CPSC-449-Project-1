@@ -1,4 +1,7 @@
 # run hug server: hug -f api.py
+# run GET/POST in termial: 
+#   http <http method> localhost:8000/posts/addPost username=jackMan etc
+#       *When inputing text with spaces, use '%20' instead of ' ' between words
 
 import configparser
 import logging.config
@@ -44,7 +47,6 @@ def posts(db: sqlite):
 @hug.get("/posts/{authorUsername}")
 def getPost(response, authorUsername: hug.types.text, db: sqlite):
     postArr = [] # JSON array for storing all post objects of the given author
-
     try:
         posts = sqlite_utils.Database("./data/posts.db")
         for row in posts.query(
@@ -59,7 +61,6 @@ def getPost(response, authorUsername: hug.types.text, db: sqlite):
 @hug.get("/posts/all")
 def getAllPosts(response, db: sqlite):
     postArr = [] # JSON array for storing each post object
-
     try:
         for row in db["posts"].rows:
             postArr.append(row)
