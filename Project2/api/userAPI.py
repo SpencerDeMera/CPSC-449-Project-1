@@ -39,11 +39,6 @@ def sqlite(section="sqlite", key="dbfile", **kwargs):
 def log(name=__name__, **kwargs):
     return logging.getLogger(name)
 
-# sets /users/
-@hug.get("/users/")
-def users(db: sqlite):
-    return {"users": db["users"].rows}
-
 # returns JSON of specific user w/ username : <input username>
 @hug.get("/users/{username}")
 def getUser(response, username: hug.types.text, db: sqlite):
@@ -96,20 +91,3 @@ def addUser(
 
     response.set_header("Location", f"/users/{newUser['username']}")
     return newUser
-
-# Update a users password given their username & current password
-# TODO
-@hug.put("/users/updatePass")
-def updatePass(
-    username: hug.types.text,
-    password: hug.types.text,
-    newPassword: hug.types.text,
-):
-    userArr = [] # JSON array for storing each user object
-    try:
-        user = db["users"].get(username)
-        if user.password == password:
-            user.password = newPassword
-    except sqlite_utils.db.NotFoundError:
-        response.status = hug.falcon.HTTP_404
-    return {"users": userArr}
