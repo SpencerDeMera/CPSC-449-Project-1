@@ -46,8 +46,10 @@ def getUserTimeline(response, username: hug.types.text, db: sqlite):
     postArr = [] # JSON array for storing all post objects of the given user
     try:
         posts = sqlite_utils.Database("./data/posts.db")
+        # get all posts from user in DESC order according to timestamp
         for row in posts.query(
-            "SELECT * FROM posts WHERE author_username=?", (username,)
+            "SELECT * FROM posts WHERE author_username=:userAuth ORDER BY timestamp DESC",
+            {"userAuth": username}
         ):
             postArr.append(row)
     except sqlite_utils.db.NotFoundError:
@@ -57,13 +59,36 @@ def getUserTimeline(response, username: hug.types.text, db: sqlite):
 # Home Timeline
 @hug.get("/{username}/home")
 def getHomeTimeline(response, username: hug.types.text, db: sqlite):
+    followingUsers = []
+    allPosts = []
     postArr = [] # JSON array for storing all post objects of the given followers user
     try:
         posts = sqlite_utils.Database("./data/posts.db")
-        for row in posts.query(
-            "SELECT * FROM posts WHERE author_username=?", (username,)
+        # get all usernames being followed by user
+        for user in posts.query(
+            "SELECT F.following_username FROM following F WHERE F.follower_username=:userAuth", 
+            {"userAuth": username}
         ):
-            postArr.append(row)
+            followingUsers.append(user)
+
+        # get all posts in DESC order according to timestamp
+        for post in posts.query(
+            "SELECT * FROM posts ORDER BY timestamp DESC"
+        ):
+            allPosts.append(post)
+
+        # get all posts of user and those followed by user
+        for post in allPosts:
+            ctr = 0 # ctr for iterating followingUsers dictionary
+            postedCtr = 0 # ctr for if current post was already displayed
+                          # user posts will get posted len(followingUsers) times per user post
+            while ctr < len(followingUsers):
+                if post['author_username'] == username and postedCtr < 1:
+                    postArr.append(post)
+                    postedCtr += 1 # increment post already displayed ctr
+                elif post['author_username'] == followingUsers[ctr]['following_username']:
+                    postArr.append(post)
+                ctr += 1 # increment iterator ctr
     except sqlite_utils.db.NotFoundError:
         response.status = hug.falcon.HTTP_404
     return {"posts": postArr}
@@ -73,7 +98,11 @@ def getHomeTimeline(response, username: hug.types.text, db: sqlite):
 def getPublicTimeline(response, db: sqlite):
     postArr = [] # JSON array for storing each post object
     try:
-        for row in db["posts"].rows:
+        posts = sqlite_utils.Database("./data/posts.db")
+        # get all posts in DESC order according to timestamp
+        for row in posts.query(
+            "SELECT * FROM posts ORDER BY timestamp DESC"
+        ):
             postArr.append(row)
     except sqlite_utils.db.NotFoundError:
         response.status = hug.falcon.HTTP_404

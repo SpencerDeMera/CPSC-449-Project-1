@@ -88,6 +88,35 @@ def addUser(
     except Exception as e:
         response.status = hug.falcon.HTTP_409
         return {"error": str(e)}
-
-    response.set_header("Location", f"/users/{newUser['username']}")
+        response.set_header("Location", f"/users/{newUser['username']}")
     return newUser
+
+@hug.post("/{username}/followUser/{following_username}")
+def followUser(
+    username: hug.types.text,
+    following_username: hug.types.text,
+    response,
+    db: sqlite
+):  
+    followerArr = db["posts"]
+    followerIds = []
+    followers = sqlite_utils.Database("./data/posts.db")
+
+    for user in followers.query("SELECT F.id FROM following F"):
+        followerIds.append(user)
+    length = len(followerIds)
+
+    newFollower = {
+        "id": length,
+        "follower_username": username,
+        "following_username": following_username
+    }
+
+    try:
+        followerArr.insert(newFollower)
+        newFollower["id"] = followerArr.last_pk
+    except Exception as e:
+        response.status = hug.falcon.HTTP_409
+        return {"error": str(e)}
+        response.set_header("Location", f"/following/{newFollower['id']}")
+    return newFollower
