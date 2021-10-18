@@ -91,23 +91,23 @@ def addUser(
         response.set_header("Location", f"/users/{newUser['username']}")
     return newUser
 
-@hug.post("/{username}/followUser/{following_username}")
+@hug.post("/users/{username}/followUser/{following_username}")
 def followUser(
     username: hug.types.text,
     following_username: hug.types.text,
     response,
     db: sqlite
 ):  
-    followerArr = db["posts"]
-    followerIds = []
-    followers = sqlite_utils.Database("./data/posts.db")
+    followerArr = db["following"]
+    followers = sqlite_utils.Database("./data/users.db")
+    ctr = 0
 
+    # Gets count of rows already in table
     for user in followers.query("SELECT F.id FROM following F"):
-        followerIds.append(user)
-    length = len(followerIds)
+        ctr += 1
 
     newFollower = {
-        "id": length,
+        "id": ctr,
         "follower_username": username,
         "following_username": following_username
     }
@@ -120,3 +120,23 @@ def followUser(
         return {"error": str(e)}
         response.set_header("Location", f"/following/{newFollower['id']}")
     return newFollower
+
+@hug.get("/users/{username}/getFollowing")
+def getFollowing(
+    username: hug.types.text,
+    response,
+    db: sqlite
+):
+    followingUsers = []
+    try:
+        users = sqlite_utils.Database("./data/users.db")
+        for user in users.query(
+            "SELECT F.following_username FROM following F WHERE F.follower_username=:userAuth", 
+            {"userAuth": username}
+        ):
+            followingUsers.append(user)
+    except sqlite_utils.db.NotFoundError:
+        response.status = hug.falcon.HTTP_404
+    return followingUsers
+
+hug.API(__name__).http.serve(port=8004)

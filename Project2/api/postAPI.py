@@ -5,11 +5,10 @@
 
 import configparser
 import logging.config
-
 import hug
 import sqlite_utils
-
 import requests
+import datetime
 
 # Users: 
 #   Attributes: usernames, bio, email, password
@@ -41,7 +40,7 @@ def log(name=__name__, **kwargs):
     return logging.getLogger(name)
 
 # User Timeline
-@hug.get("/{username}/user")
+@hug.get("/posts/{username}/user")
 def getUserTimeline(response, username: hug.types.text, db: sqlite):
     postArr = [] # JSON array for storing all post objects of the given user
     try:
@@ -57,19 +56,17 @@ def getUserTimeline(response, username: hug.types.text, db: sqlite):
     return {"posts": postArr}
 
 # Home Timeline
-@hug.get("/{username}/home")
+@hug.get("/posts/{username}/home")
 def getHomeTimeline(response, username: hug.types.text, db: sqlite):
     followingUsers = []
     allPosts = []
     postArr = [] # JSON array for storing all post objects of the given followers user
+    inputUser = username
     try:
         posts = sqlite_utils.Database("./data/posts.db")
-        # get all usernames being followed by user
-        for user in posts.query(
-            "SELECT F.following_username FROM following F WHERE F.follower_username=:userAuth", 
-            {"userAuth": username}
-        ):
-            followingUsers.append(user)
+
+        # TODO: Get usernames of those followed by {username}
+
 
         # get all posts in DESC order according to timestamp
         for post in posts.query(
@@ -94,7 +91,7 @@ def getHomeTimeline(response, username: hug.types.text, db: sqlite):
     return {"posts": postArr}
 
 # Public Timeline
-@hug.get("/public")
+@hug.get("/posts/public")
 def getPublicTimeline(response, db: sqlite):
     postArr = [] # JSON array for storing each post object
     try:
@@ -107,3 +104,42 @@ def getPublicTimeline(response, db: sqlite):
     except sqlite_utils.db.NotFoundError:
         response.status = hug.falcon.HTTP_404
     return {"posts": postArr}
+
+# create new Post
+@hug.post("/posts/{author_username}/newPost/{message}")
+def newPost(
+    author_username: hug.types.text,
+    message: hug.types.text,
+    response,
+    db: sqlite,
+):
+    postsArr = db["posts"]
+    posts = sqlite_utils.Database("./data/posts.db")
+    ctr = 0
+    ct = datetime.datetime.now()
+    ts = ct.timestamp()
+
+    # Gets count of rows already in table
+    for post in posts.query("SELECT P.id FROM posts P"):
+        ctr += 1
+
+    # creates new user object with input data
+    newPost = {
+        "id": ctr,
+        "author_username": username,
+        "message": message,
+        "human_timestamp": ct,
+        "timestamp": ts,
+        "origin_URL": NULL
+    }
+
+    try:
+        postsArr.insert(newPost)
+        newPost["id"] = postsArr.last_pk
+    except Exception as e:
+        response.status = hug.falcon.HTTP_409
+        return {"error": str(e)}
+        response.set_header("Location", f"/posts/{newPost['id']}")
+    return newPost
+
+hug.API(__name__).http.serve(port=8005)
