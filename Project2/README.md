@@ -19,11 +19,13 @@
 ## Installation
 Use the following to setup your environment:
 
-`$ sudo apt update`<br>
-`$ sudo apt install --yes python3-pip ruby-foreman httpie sqlite3`<br>
-`$ python3 -m pip install hug sqlite-utils`<br>
-Log out then back in to ensure all PATH changes are established<br>
-`$ sudo apt install --yes haproxy gunicorn`
+```shell
+$ sudo apt update
+$ sudo apt install --yes python3-pip ruby-foreman httpie sqlite3
+$ python3 -m pip install hug sqlite-utils
+# Log out then back in to ensure all PATH changes are established
+$ sudo apt install --yes haproxy gunicorn
+```
 
 ## Running
 
