@@ -39,10 +39,10 @@ $ ./bin/foreman.sh                                                   # Starts th
 
 
 ## Credits
-Some code and methodology was provided by instructor Kenytt Avery
+* Some code and methodology was provided by instructor Kenytt Avery
     * Provided code will be marked with denoting comments
 
-This project makes use of these libraries & tutorial sources
+* This project makes use of these libraries & tutorial sources
     * hug start guide : http://www.hug.rest/
     * HTTPie documentation / start guide : https://opensource.com/article/19/8/getting-started-httpie
     * foreman documentation / start guide : http://blog.daviddollar.org/2011/05/06/introducing-foreman.html
