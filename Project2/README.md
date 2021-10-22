@@ -2,15 +2,7 @@
 ## Spencer DeMera & Ricardo Segarra
 
 ## Project Description:
-* This project uses a variety of tools and services to power two RESTful back-end services that facilitate user interaction and communication via digital blogging. Users can view three different timelines, follow other users, create new posts, users can be added, and repost other posts. 
-* This project makes use of these libraries & tutorial sources
-    * hug start guide : http://www.hug.rest/
-    * HTTPie documentation / start guide : https://opensource.com/article/19/8/getting-started-httpie
-    * foreman documentation / start guide : http://blog.daviddollar.org/2011/05/06/introducing-foreman.html
-    * sqlite-utils documentation / start guide : https://simonwillison.net/2019/Feb/25/sqlite-utils/
-    * guinicorn : https://gunicorn.org/
-    * HAProxy documentation : https://www.haproxy.org/
-    * Python Requests library : https://docs.python-requests.org/en/latest/
+This project uses a variety of tools and services to power two RESTful back-end services that facilitate user interaction and communication via digital blogging. Users can view three different timelines, follow other users, create new posts, users can be added, and repost other posts. 
 
 ## Contents:
 * File README.md. README file for the project.
@@ -47,4 +39,14 @@ $ ./bin/foreman.sh                                                   # Starts th
 
 
 ## Credits
+Some code and methodology was provided by instructor Kenytt Avery
+    * Provided code will be marked with denoting comments
 
+This project makes use of these libraries & tutorial sources
+    * hug start guide : http://www.hug.rest/
+    * HTTPie documentation / start guide : https://opensource.com/article/19/8/getting-started-httpie
+    * foreman documentation / start guide : http://blog.daviddollar.org/2011/05/06/introducing-foreman.html
+    * sqlite-utils documentation / start guide : https://simonwillison.net/2019/Feb/25/sqlite-utils/
+    * guinicorn : https://gunicorn.org/
+    * HAProxy documentation : https://www.haproxy.org/
+    * Python Requests library : https://docs.python-requests.org/en/latest/
