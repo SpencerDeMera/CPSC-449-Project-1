@@ -25,6 +25,11 @@ $ sudo apt install --yes python3-pip ruby-foreman httpie sqlite3     # Install p
 $ python3 -m pip install hug sqlite-utils                            # Install hug and Python sqlite-utils libraries
 # Log out then back in to ensure all PATH changes are established
 $ sudo apt install --yes haproxy gunicorn                            # Install production tools
+
+# Run the following to initialize the databases and start the APIs
+$ cd api
+$ ./bin/init.sh                                                      # Creates and initalizes user and post db files and tables
+$ ./bin/foreman.sh                                                   # Starts the foreman api service
 ```
 
 ## Running
