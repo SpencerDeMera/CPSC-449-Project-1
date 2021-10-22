@@ -12,7 +12,7 @@ This project uses a variety of tools and services to power two RESTful back-end 
     * FILES userAPI.py & postAPI.py. User and Post API files.
     * FILES data/users.csv, data/followers.csv & data/posts.csv. CSV schema files for each database.
     * FOLDER log. Log folder to contain api.log files.
-    * FILES bin/init.sh. Initilization scripts for database schemas.
+    * FILES bin/init.sh * bin/foreman.sh. Initilization scripts for database schemas and foreman start.
     * FILES configs/userAPI.ini & postAPI.ini. Initilization files for SQLite DBs.
     * FILE configs/logging.ini. Initilization file for SQLite logging and configs.
 
@@ -34,17 +34,17 @@ $ ./bin/foreman.sh                                                   # Starts th
 
 ## Running
 
- API Call                                   | Route                                                     |
---------------------------------------------|-----------------------------------------------------------|
-`getUser(username)`                         | `GET /users/<username>`                                   |
-`getAllUsers()`                             | `GET /users/all`                                          |
-`addUser(username, password, email, bio)`   | `POST /users/addUser`                                     |
-`followUser(username, following_username)`  | `POST /users/<username>/followUser/<following_username>`  |
-`getFollowing(username)`                    | `GET /users/<username>/getFollowing`                      |
-`getUserTimeline(username)`                 | `GET /posts/<username>/user`                              |
-`getHomeTimeline(username)`                 | `GET /posts/<username>/home`                              |
-`getPublicTimeline()`                       | `GET /posts/public`                                       |
-`newPost(author_username, message)`         | `POST /posts/<author_username>/newPost`                   |
+ API Call                                   | Route                                                     | Action
+--------------------------------------------|-----------------------------------------------------------|-------------------------------------------------------
+`getUser(username)`                         | `GET /users/<username>`                                   | Returns all info on given user
+`getAllUsers()`                             | `GET /users/all`                                          | Returns all users & their info
+`addUser(username, password, email, bio)`   | `POST /users/addUser`                                     | Adds a new user to database
+`followUser(username, following_username)`  | `POST /users/<username>/followUser/<following_username>`  | Follow a new user
+`getFollowing(username)`                    | `GET /users/<username>/getFollowing`                      | Get all usernames followed by given user
+`getUserTimeline(username)`                 | `GET /posts/<username>/user`                              | Get timeline of all posts made by user
+`getHomeTimeline(username)`                 | `GET /posts/<username>/home`                              | Get timeline of all posts by user and users followed
+`getPublicTimeline()`                       | `GET /posts/public`                                       | Get timeline of all posts of every user
+`newPost(author_username, message)`         | `POST /posts/<author_username>/newPost`                   | Add a new post
 
 ## Issues & Incomplete Functionalities
 
@@ -61,4 +61,3 @@ $ ./bin/foreman.sh                                                   # Starts th
     * guinicorn : https://gunicorn.org/
     * HAProxy documentation : https://www.haproxy.org/
     * Python Requests library : https://docs.python-requests.org/en/latest/
-
