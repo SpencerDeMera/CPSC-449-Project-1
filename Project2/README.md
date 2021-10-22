@@ -34,15 +34,26 @@ $ ./bin/foreman.sh                                                   # Starts th
 
 ## Running
 
+ API Call                                   | Route                                                     |
+--------------------------------------------|-----------------------------------------------------------|
+`getUser(username)`                         | `GET /users/{username}`                                   |
+`getAllUsers()`                             | `GET /users/all`                                          |
+`addUser(username, password, email, bio)`   | `POST /users/addUser`                                     |
+`followUser(username, following_username)`  | `POST /users/{username}/followUser/{following_username}`  |
+`getFollowing(username)`                    | `GET /users/{username}/getFollowing`                      |
+`getUserTimeline(username)`                 | `GET /posts/{username}/user`                              |
+`getHomeTimeline(username)`                 | `GET /posts/{username}/home`                              |
+`getPublicTimeline()`                       | `GET /posts/public`                                       |
+`newPost(author_username, message)`         | `POST /posts/{author_username}/newPost`                   |
 
-## Errors & Bugs
+## Issues & Incomplete Functionalities
 
 
 ## Credits
-* Some code and methodology was provided by instructor Kenytt Avery
+Some code and methodology was provided by instructor Kenytt Avery
     * Provided code will be marked with denoting comments
 
-* This project makes use of these libraries & tutorial sources
+This project makes use of these libraries & tutorial sources
     * hug start guide : http://www.hug.rest/
     * HTTPie documentation / start guide : https://opensource.com/article/19/8/getting-started-httpie
     * foreman documentation / start guide : http://blog.daviddollar.org/2011/05/06/introducing-foreman.html
