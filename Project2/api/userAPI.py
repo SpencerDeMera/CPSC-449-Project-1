@@ -40,28 +40,6 @@ def userAuth(username, password):
         else:
             return False
 
-# returns JSON of specific user w/ username : <input username>
-@hug.get("/users/{username}")
-def getUser(response, username: hug.types.text, db: sqlite):
-    users = [] # JSON for storing all user data (username, password, email, bio)
-    try:
-        user = db["users"].get(username)
-        users.append(user)
-    except sqlite_utils.db.NotFoundError:
-        response.status = hug.falcon.HTTP_404
-    return {"users": user}
-
-# retunrs JSON array of all users
-@hug.get("/users/all")
-def getAllUsers(response, db: sqlite):
-    userArr = [] # JSON array for storing each user object
-    try:
-        for row in db["users"].rows:
-            userArr.append(row)
-    except sqlite_utils.db.NotFoundError:
-        response.status = hug.falcon.HTTP_404
-    return {"users": userArr}
-
 # Create a new user and add to table of users
 @hug.post("/users/addUser")
 def addUser(

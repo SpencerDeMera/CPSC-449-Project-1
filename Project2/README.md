@@ -38,8 +38,6 @@ $ ./bin/foreman.sh                                                   # Starts th
 
  API Call                                   | Route                                                     | Action
 --------------------------------------------|-----------------------------------------------------------|-------------------------------------------------------
-`getUser(username)`                         | `GET /users/<username>`                                   | Returns all info on given user
-`getAllUsers()`                             | `GET /users/all`                                          | Returns all users & their info
 `addUser(username, password, email, bio)`   | `POST /users/addUser`                                     | Adds a new user to database
 `followUser(username, following_username)`  | `POST /users/<username>/followUser/<following_username>`  | Follow a new user
 `getFollowing(username)`                    | `GET /users/<username>/getFollowing`                      | Get all usernames followed by given user
