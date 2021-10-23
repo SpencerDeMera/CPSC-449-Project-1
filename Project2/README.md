@@ -47,7 +47,14 @@ $ ./bin/foreman.sh                                                   # Starts th
 `newPost(author_username, message)`         | `POST /posts/<author_username>/newPost`                   | Add a new post
 
 ## Issues & Incomplete Functionalities
-* 
+* Issues
+    * Number in place of `username` value on JSON output after new user is created
+        * addUser will output JSON with the number of users instead of username in `username` when displayed after run
+        * The actual new user object created by addUser will actually have the created username value in `username`
+            * Not sure what is causing said issue, insufficent time to resolve issue
+* Incomplete functions
+    * Repost code is fully implemented but the server throws HTTP 405 upon POST request
+        * Insufficient time to resolve issue
 
 ## Credits
 * Some code and methodology was provided by instructor Kenytt Avery
