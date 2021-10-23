@@ -12,7 +12,7 @@ This project uses a variety of tools and services to power two RESTful back-end 
     * FILES userAPI.py & postAPI.py. User and Post API files.
     * FILES data/users.csv, data/followers.csv & data/posts.csv. CSV schema files for each database.
     * FOLDER log. Log folder to contain api.log files.
-    * FILES bin/init.sh * bin/foreman.sh. Initilization scripts for database schemas and foreman start.
+    * FILES bin/init.sh & bin/foreman.sh. Initilization scripts for database schemas and foreman start.
     * FILES configs/userAPI.ini & postAPI.ini. Initilization files for SQLite DBs.
     * FILE configs/logging.ini. Initilization file for SQLite logging and configs.
 
@@ -29,10 +29,12 @@ $ sudo apt install --yes haproxy gunicorn                            # Install p
 # Run the following to initialize the databases and start the APIs
 $ cd api
 $ ./bin/init.sh                                                      # Creates and initalizes user and post db files and tables
-$ ./bin/foreman.sh                                                   # Starts the foreman api service
+$ ./bin/foreman.sh                                                   # Starts the foreman and HAProxy api services
 ```
 
 ## Running
+* GET can be run in terminal or browser address bar
+* POST must be run inside a terminal only
 
  API Call                                   | Route                                                     | Action
 --------------------------------------------|-----------------------------------------------------------|-------------------------------------------------------
@@ -45,6 +47,7 @@ $ ./bin/foreman.sh                                                   # Starts th
 `getHomeTimeline(username)`                 | `GET /posts/<username>/home`                              | Get timeline of all posts by user and users followed
 `getPublicTimeline()`                       | `GET /posts/public`                                       | Get timeline of all posts of every user
 `newPost(author_username, message)`         | `POST /posts/<author_username>/newPost`                   | Add a new post
+`repost(username,original_username,id)`     | `POST /posts/<username>/repost<author_username>&<id>`     | Repost a post from another users
 
 ## Issues & Incomplete Functionalities
 * Issues
@@ -67,4 +70,3 @@ $ ./bin/foreman.sh                                                   # Starts th
     * [guinicorn](https://gunicorn.org/)
     * [HAProxy documentation](https://www.haproxy.org/)
     * [Python Requests library](https://docs.python-requests.org/en/latest/)
-
