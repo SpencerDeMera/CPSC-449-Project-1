@@ -10,16 +10,6 @@ import hug
 import sqlite_utils
 import urllib.parse
 
-# Users: 
-#   Attributes: usernames, bio, email, password
-#   Actions: follow, post messages
-# Posts: 
-#   Attributes: author username, post message, timestamps
-#   Actions: repost -> URL of original post
-# Timelines: 
-#   Attributes: user (user Posts), home (followed users), public (all users)
-#   (Reverse chronological order, newest first)
-
 # Parser configuator function 
 #   Code provided by instructor
 config = configparser.ConfigParser()
@@ -49,10 +39,8 @@ def userAuth(username, password):
             return True
         else:
             return False
-    #authenticate = hug.authentication.basic(hug.authentication.verify('userlist[0]['username']', userlist[0]['password']))
-   # return authenticate
+
 # returns JSON of specific user w/ username : <input username>
-#requires=authentication("/users/{username}")
 @hug.get("/users/{username}")
 def getUser(response, username: hug.types.text, db: sqlite):
     users = [] # JSON for storing all user data (username, password, email, bio)
@@ -151,6 +139,3 @@ def getFollowing(
     except sqlite_utils.db.NotFoundError:
         response.status = hug.falcon.HTTP_404
     return followingUsers
-
-
-#hug.API(__name__).http.serve(port=8004)

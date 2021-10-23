@@ -11,19 +11,8 @@ import requests
 import datetime
 from userAPI import userAuth
 
-# Users: 
-#   Attributes: usernames, bio, email, password
-#   Actions: follow, post messages
-# Posts: 
-#   Attributes: author_username, message, human_timestamp, timestamp, origin_URL
-#   Actions: repost -> URL of original post
-# Timelines: 
-#   Attributes: user (user Posts), home (followed users), public (all users)
-#   (Reverse chronological order, newest first)
-
 # Parser configuator function 
 #   Code provided by instructor
-
 config = configparser.ConfigParser()
 config.read("./configs/postAPI.ini")
 logging.config.fileConfig(config["logging"]["config"], disable_existing_loggers=False)
@@ -146,7 +135,6 @@ def newPost(
         return {"error": str(e)}
         response.set_header("Location", f"/posts/{newPost['id']}")
     return newPost
-
 
 # repost functionality
 @hug.post("/posts/{username}/repost/{original_username}&{id}")
