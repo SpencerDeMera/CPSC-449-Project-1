@@ -18,3 +18,4 @@ sqlite-utils create-index ./data/users.db following follower_username following_
 
 sqlite-utils insert ./data/posts.db posts --csv ./data/posts.csv --detect-types --pk=id
 sqlite-utils create-index ./data/posts.db posts author_username message human_timestamp timestamp origin_URL --unique
+
