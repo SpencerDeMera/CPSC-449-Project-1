@@ -39,7 +39,20 @@ def sqlite(section="sqlite", key="dbfile", **kwargs):
 def log(name=__name__, **kwargs):
     return logging.getLogger(name)
 
+def userAuth(username, password):
+    users = sqlite_utils.Database("./data/users.db")
+    for row in users.query(
+        "SELECT * from users WHERE username=:user AND password=:pass",
+        {"user": username, "pass": password}
+    ):
+        if row['password'] == password:
+            return True
+        else:
+            return False
+    #authenticate = hug.authentication.basic(hug.authentication.verify('userlist[0]['username']', userlist[0]['password']))
+   # return authenticate
 # returns JSON of specific user w/ username : <input username>
+#requires=authentication("/users/{username}")
 @hug.get("/users/{username}")
 def getUser(response, username: hug.types.text, db: sqlite):
     users = [] # JSON for storing all user data (username, password, email, bio)
@@ -139,4 +152,5 @@ def getFollowing(
         response.status = hug.falcon.HTTP_404
     return followingUsers
 
-hug.API(__name__).http.serve(port=8004)
+
+#hug.API(__name__).http.serve(port=8004)
