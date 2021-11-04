@@ -1,0 +1,391 @@
+[2021-10-22 15:56:43,410] DEBUG in postAPI: http://localhost:8000/users/{username}/getFollowing
+[2021-10-22 15:56:43,418] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 15:56:43,424] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/%7Busername%7D/getFollowing HTTP/1.1" 200 2
+[2021-10-22 15:57:08,179] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 15:57:08,180] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 15:57:08,182] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 15:57:31,645] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 15:57:31,648] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 15:57:31,650] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 15:57:46,173] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 15:57:46,175] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 15:57:46,177] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 15:59:16,388] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 15:59:16,389] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 15:59:16,392] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 16:04:20,330] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 16:04:20,331] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 16:04:20,334] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 16:08:24,168] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 16:08:24,169] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 16:08:24,172] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 16:08:45,994] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 16:08:45,996] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 16:08:45,998] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 16:32:21,655] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 16:32:21,657] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 16:32:21,659] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 16:39:15,146] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 16:39:15,147] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 16:39:15,150] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 16:41:47,545] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 16:41:47,546] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 16:41:47,548] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 16:58:00,909] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 16:58:00,910] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 16:58:00,913] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 16:58:16,817] DEBUG in postAPI: http://localhost:8000/users/ty37/getFollowing
+[2021-10-22 16:58:16,818] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 16:58:16,819] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/ty37/getFollowing HTTP/1.1" 200 172
+[2021-10-22 16:58:31,165] DEBUG in postAPI: http://localhost:8000/users/ty37/getFollowing
+[2021-10-22 16:58:31,166] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 16:58:31,168] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/ty37/getFollowing HTTP/1.1" 200 172
+[2021-10-22 17:30:41,814] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:30:41,815] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:30:41,818] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 17:30:41,820] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:30:41,821] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:30:41,822] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 17:30:41,825] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:30:41,825] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:30:41,827] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 17:30:41,843] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:30:41,843] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:30:41,845] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 17:30:41,847] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:30:41,848] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:30:41,849] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 17:30:41,851] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:30:41,851] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:30:41,852] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 17:30:41,854] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:30:41,854] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:30:41,855] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 17:30:41,857] DEBUG in postAPI: http://localhost:8000/users/ty37/getFollowing
+[2021-10-22 17:30:41,858] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:30:41,859] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/ty37/getFollowing HTTP/1.1" 200 172
+[2021-10-22 17:30:45,665] DEBUG in postAPI: http://localhost:8000/users/ty37/getFollowing
+[2021-10-22 17:30:45,666] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:30:45,668] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/ty37/getFollowing HTTP/1.1" 200 172
+[2021-10-22 17:30:46,402] DEBUG in postAPI: http://localhost:8000/users/ty37/getFollowing
+[2021-10-22 17:30:46,402] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:30:46,404] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/ty37/getFollowing HTTP/1.1" 200 172
+[2021-10-22 17:30:46,902] DEBUG in postAPI: http://localhost:8000/users/ty37/getFollowing
+[2021-10-22 17:30:46,903] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:30:46,905] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/ty37/getFollowing HTTP/1.1" 200 172
+[2021-10-22 17:30:47,258] DEBUG in postAPI: http://localhost:8000/users/ty37/getFollowing
+[2021-10-22 17:30:47,259] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:30:47,260] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/ty37/getFollowing HTTP/1.1" 200 172
+[2021-10-22 17:30:47,989] DEBUG in postAPI: http://localhost:8000/users/ty37/getFollowing
+[2021-10-22 17:30:47,990] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:30:47,992] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/ty37/getFollowing HTTP/1.1" 200 172
+[2021-10-22 17:30:48,719] DEBUG in postAPI: http://localhost:8000/users/ty37/getFollowing
+[2021-10-22 17:30:48,720] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:30:48,722] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/ty37/getFollowing HTTP/1.1" 200 172
+[2021-10-22 17:31:22,104] DEBUG in postAPI: http://localhost:8000/users/ty37/getFollowing
+[2021-10-22 17:31:22,105] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:31:22,107] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/ty37/getFollowing HTTP/1.1" 200 172
+[2021-10-22 17:31:29,371] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:31:29,372] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:31:29,373] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 17:33:15,546] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:33:15,547] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:33:15,549] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 17:36:46,517] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:36:46,518] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:36:46,520] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 17:38:27,122] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:38:27,123] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:38:27,125] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 17:48:41,290] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:41,298] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:41,368] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:41,369] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:41,372] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:41,373] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:41,375] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:41,376] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:41,378] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:41,379] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:41,381] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:41,382] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:41,384] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:41,385] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:41,387] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:41,388] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:41,390] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:41,390] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:41,393] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:41,393] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:44,571] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:44,571] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:44,574] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:44,574] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:44,577] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:44,577] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:44,580] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:44,581] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:44,583] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:44,583] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:44,586] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:44,587] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:44,589] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:44,590] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:44,593] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:44,594] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:44,596] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:44,597] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:48:44,599] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:48:44,600] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:17,698] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:17,699] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:17,705] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:17,706] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:17,708] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:17,708] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:17,711] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:17,712] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:17,715] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:17,715] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:17,718] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:17,719] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:17,721] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:17,722] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:17,724] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:17,724] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:17,727] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:17,727] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:17,730] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:17,730] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:39,334] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:39,335] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:39,337] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:39,338] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:39,643] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:39,644] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:40,668] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:40,669] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:40,974] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:40,975] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:49:46,298] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:49:46,298] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:16,323] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:50:16,324] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:16,326] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:50:16,327] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:16,639] DEBUG in postAPI: http://localhost:8000/users/spenc37/getFollowing
+[2021-10-22 17:50:16,640] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:49,820] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:49,826] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:49,829] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:49,831] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:49,834] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:49,837] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:49,839] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:49,841] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:49,844] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:49,846] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:50,701] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:50,704] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:50,707] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:50,709] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:50,712] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:50,715] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:50,717] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:50,720] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:50,722] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:50,725] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,127] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,129] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,132] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,135] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,137] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,140] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,142] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,145] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,148] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,150] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,301] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,304] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,320] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,322] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,324] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,327] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,330] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,332] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,334] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,337] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,493] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,497] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,500] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,502] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,505] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,508] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,510] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,513] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,515] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:50:51,518] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:51:16,963] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:51:59,129] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:51:59,133] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:51:59,135] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:51:59,138] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:51:59,140] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:51:59,142] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:51:59,144] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:51:59,147] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:51:59,149] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:51:59,152] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:51:59,156] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:51:59,159] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:51:59,440] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:52:00,475] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 17:57:00,811] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:25,560] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:25,566] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:25,568] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:25,570] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:25,572] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:25,574] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:25,576] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:25,578] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:25,581] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:25,583] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:29,084] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:29,086] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:29,089] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:29,091] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:29,093] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:29,095] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:29,098] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:29,100] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:29,102] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:29,104] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,127] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,130] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,132] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,134] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,138] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,140] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,142] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,144] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,156] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,159] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,634] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,636] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,639] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,641] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,643] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,645] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,647] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,649] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,651] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,653] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,804] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,806] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,809] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,810] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,812] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,815] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,817] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,819] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,821] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,823] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,971] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,974] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,976] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,979] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,981] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,983] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,985] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,987] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,990] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:40,991] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,128] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,131] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,133] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,136] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,138] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,140] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,142] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,144] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,146] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,148] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,282] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,285] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,287] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,289] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,291] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,293] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,295] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,297] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,298] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,300] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,447] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,450] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,453] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,455] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,456] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,459] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,461] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,463] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,465] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,467] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,612] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,614] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,616] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,618] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,621] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,623] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,625] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,627] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,629] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,631] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,794] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,796] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,798] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,801] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,803] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,805] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,807] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,808] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,811] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,813] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,988] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,990] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,992] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,995] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,997] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:41,999] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:42,001] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:42,003] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:42,005] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:42,007] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:42,162] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:42,165] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:42,167] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:42,170] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:42,172] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:42,174] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:42,177] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:42,179] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:42,181] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:05:42,183] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:07:53,422] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:07:53,429] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 18:08:02,102] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:08:02,104] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/ty37/getFollowing HTTP/1.1" 200 172
+[2021-10-22 18:11:50,228] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 18:11:50,230] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 19:10:00,833] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 19:10:00,841] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/ty37/getFollowing HTTP/1.1" 200 172
+[2021-10-22 19:10:26,269] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 19:10:26,271] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/ty37/getFollowing HTTP/1.1" 200 172
+[2021-10-22 20:21:11,782] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 20:21:11,789] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 20:35:10,817] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 20:35:10,825] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 20:40:42,823] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 20:40:42,832] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
+[2021-10-22 20:41:30,324] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): localhost:8000
+[2021-10-22 20:41:30,326] DEBUG in urllib3.connectionpool: http://localhost:8000 "GET /users/spenc37/getFollowing HTTP/1.1" 200 134
