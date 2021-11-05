@@ -10,6 +10,6 @@ redisHost = "localhost"
 redisPort = 6379
 redisPass = ""
 
-r = redis.StrictRedis(host = redisHost, port = redisPort, db = 0)
-print(r.set('foo', 'bar'))
-print(r.get('foo'))
+r = redis.Redis(host = redisHost, port = redisPort, db = 0)
+print('Is data set? ' + str(r.set('foo', 'bar')))
+print('Value of first key : ' + str(r.get('foo')))
