@@ -11,4 +11,5 @@ redisPort = 6379
 redisPass = ""
 
 r = redis.StrictRedis(host = redisHost, port = redisPort, db = 0)
-r.set('foo', 'bar')
+print(r.set('foo', 'bar'))
+print(r.get('foo'))
