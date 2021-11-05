@@ -29,10 +29,10 @@ $ sudo apt install --yes haproxy gunicorn                            # Install p
 # Install reids and DyanmoDB data stores
 # Redis
 $ sudo apt install --yes redis                                      # Install Redis
-# Some python3 instances won't install redis with the above command, must use below \/
-$ python3 -m pip install redis                                      # Alt. install for python3 install failure
 $ redis-cli ping                                                    # Verify that Redis is running w/ response 'PONG'
 $ sudo apt install --yes python3-hiredis                            # Install redis-py library and Hiredis parser
+# Some python3 instances won't install redis-py with the above command, must use below \/
+$ python3 -m pip install redis                                      # Alt. install for python3 install failure
 # DynamoDB
 $ sudo apt install --yes awscli                                     # Install the AWS CLI 
 $ aws configure                                                     # Configure the AWS instance w/ necessary parameters
