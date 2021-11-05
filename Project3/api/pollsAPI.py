@@ -7,7 +7,6 @@ import configparser
 import logging.config
 import hug
 import sqlite_utils
-import redis
 
 # Parser configuator function 
 #   Code provided by instructor
