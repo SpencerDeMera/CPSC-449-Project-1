@@ -71,9 +71,13 @@ def getLikes(
 
     # If post_id is valid
     if realID:
-        msg = "Post " + post_id
-        # JSON serialize to json for output
-        return {msg: json.loads(r.get(post_id))}
+        if r.exists(post_id):
+            msg = "Post " + post_id
+            # JSON serialize to json for output
+            return {msg: json.loads(r.get(post_id))}
+        else:
+            msg = "Post: " + post_id + " Has 0 Likes"
+            return {"ALERT": msg}
     else:
         # JSON serialize to json for output
         return {"ERROR": "Invalid Post ID"}
