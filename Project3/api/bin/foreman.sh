@@ -7,3 +7,6 @@ systemctl status haproxy
 
 # Starting Redis
 redis-server
+
+# Erase all Redis Data in memory (testing only)
+# $ redis-cli FLUSHALL

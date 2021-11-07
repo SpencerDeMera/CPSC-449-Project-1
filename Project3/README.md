@@ -2,7 +2,7 @@
 ## Spencer DeMera & Ricardo Segarra
 
 ## Project Description:
-This project uses a variety of tools and services to power two RESTful back-end services that facilitate user interaction and communication via digital blogging. Users can view three different timelines, follow other users, create new posts, users can be added, and repost other posts. 
+This project uses a variety of tools and services to power two RESTful back-end services that facilitate user interaction and communication via digital blogging. Users can view three different timelines, follow other users, create new posts, users can be added, and repost other posts. Additionally, users can now like posts and conduct polls while being able to view the results/metadata of both.
 
 ## Contents:
 * File README.md. README file for the project.
@@ -10,6 +10,7 @@ This project uses a variety of tools and services to power two RESTful back-end 
     * FILE Procfile. Procfile for foreman service definitions.
     * FILE .env. Env file for avoiding missing input.
     * FILES userAPI.py & postAPI.py. User and Post API files.
+    * FILES likesAPI.py, pollsAPI.py, & srvcRegAPI.py. Files for likes, polls, and servce registry microservices
     * FILES data/users.csv, data/followers.csv & data/posts.csv. CSV schema files for each database.
     * FOLDER log. Log folder to contain api.log files.
     * FILES bin/init.sh & bin/foreman.sh. Initilization scripts for database schemas and foreman start.
@@ -53,11 +54,16 @@ $ ./bin/foreman.sh                                                   # Starts th
 `addUser(username, password, email, bio)`   | `POST /users/addUser`                                     | Adds a new user to database
 `followUser(username, following_username)`  | `POST /users/<username>/followUser/<following_username>`  | Follow a new user
 `getFollowing(username)`                    | `GET /users/<username>/getFollowing`                      | Get all usernames followed by given user
+`getPost(post_id)`                          | `GET /posts/getPost:<post_id>`                            | Checks if post ID is valid
 `getUserTimeline(username)`                 | `GET /posts/<username>/user`                              | Get timeline of all posts made by user
 `getHomeTimeline(username)`                 | `GET /posts/<username>/home`                              | Get timeline of all posts by user and users followed
 `getPublicTimeline()`                       | `GET /posts/public`                                       | Get timeline of all posts of every user
 `newPost(author_username, message)`         | `POST /posts/<author_username>/newPost`                   | Add a new post
 `repost(username,original_username,id)`     | `POST /posts/<username>/repost<author_username>&<id>`     | Repost a post from another users
+`likePost(username, post_id)`               | `POST /posts/<username>/like/<post_id>`                   | Like a post given its ID
+`getLikes(post_id)`                         | `GET /likes/getLikes:<post_id>`                           | Number of likes post has given its ID
+`getLiked(username)`                        | `GET /likes/<username>`                                   | Get list of posts liked by a user
+`getPopularPosts()`                         | `GET /posts/popular`                                      | Get list of liked posts ordered by number of likes
 
 ## Issues & Incomplete Functionalities
 * Issues
