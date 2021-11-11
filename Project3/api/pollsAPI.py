@@ -127,8 +127,9 @@ def vote(
         )
 
 # Get results of a poll given its ID
-@hug.get("/polls/results/{poll_id}")
+@hug.get("/polls/results/{poll_id}&{username}")
 def getPollResults(
+    username: hug.types.text,
     poll_id: hug.types.text,
     response,
     dynamoDB = None
