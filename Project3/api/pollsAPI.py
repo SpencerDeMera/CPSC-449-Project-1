@@ -136,3 +136,14 @@ def getPollResults(
     # Connect DynamoDB
     if not dynamodb: 
         dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
+
+    table = dynamodb.Table('Polls')
+
+    try:
+        response1 = table.get_item(
+            Key = {'poll_id': poll_id, 'createdBy': username}
+        )
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+    else:
+        return {'Poll': response1}
