@@ -14,6 +14,7 @@ This project uses a variety of tools and services to power two RESTful back-end 
     * FILES data/users.csv, data/followers.csv & data/posts.csv. CSV schema files for each database.
     * FOLDER log. Log folder to contain api.log files.
     * FILES bin/init.sh & bin/foreman.sh. Initilization scripts for database schemas and foreman start.
+    * FILE bin/initPolls.py. Initilization scripts for polls service DynamoDB datastore.
     * FILES configs/userAPI.ini & postAPI.ini. Initilization files for SQLite DBs.
     * FILE configs/logging.ini. Initilization file for SQLite logging and configs.
 
@@ -48,6 +49,8 @@ Default region name [None]: us-west-2
 Default output format [None]: table
 # After step #5 of the above guide & confirmation of DynamoDB working
 $ sudo apt install --yes python3-boto3                              # Install Boto3 python library
+# Some python3 instances won't install boto3 with the above command, must use below \/
+$ pip install boto3                                                 # Alt. install for DynamoDB boto3 python3 install failure
 
 # Run the following to initialize the databases and start the APIs
 $ cd api

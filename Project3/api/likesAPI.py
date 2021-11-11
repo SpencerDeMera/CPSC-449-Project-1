@@ -1,7 +1,12 @@
 # run hug server: hug -f api.py
 # run GET/POST in termial: 
-#   http <http method> localhost:8000/posts/addPost username=jackMan etc
-#       *When inputing text with spaces, use '%20' instead of ' ' between words
+#   http <http method> localhost:8000/posts/newPost username=jackMan etc
+
+# Users can:
+#   Like posts, 
+#   get number of likes a post has, 
+#   get all posts liked by a user, 
+#   get all the posts ranked by popularity
 
 import hug
 import redis
@@ -119,4 +124,4 @@ def getPopularPosts(response):
     # JSON serialize to json for output
     return {msg: popPostsArr}
 
-hug.API(__name__).http.serve(port=8005) # temporary
+# hug.API(__name__).http.serve(port=8005) # temporary

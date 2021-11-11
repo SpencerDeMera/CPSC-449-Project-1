@@ -1,7 +1,6 @@
 # run hug server: hug -f api.py
 # run GET/POST in termial: 
-#   http <http method> localhost:8000/users/addUser username=jackMan etc
-#       *When inputing text with spaces, use '%20' instead of ' ' between words
+#   http <http method> localhost:8000/users/newPost username=jackMan etc
 
 import configparser
 import logging.config
