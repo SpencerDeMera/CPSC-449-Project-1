@@ -35,8 +35,18 @@ $ sudo apt install --yes python3-hiredis                            # Install re
 # Some python3 instances won't install redis-py with the above command, must use below \/
 $ python3 -m pip install redis                                      # Alt. install for python3 install failure
 # DynamoDB
+```
+Follow the instructions at [DynamoDB Local Install Guide](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html) until step #4
+```shell
+# Use the following commands upon reaching step #4 of the above guide
 $ sudo apt install --yes awscli                                     # Install the AWS CLI 
 $ aws configure                                                     # Configure the AWS instance w/ necessary parameters
+# Configure with:
+AWS Access Key ID [None]: fakeMyKeyId
+AWS Secret Access Key [None]: fakeSecretAccessKey
+Default region name [None]: us-west-2
+Default output format [None]: table
+# After step #5 of the above guide & confirmation of DynamoDB working
 $ sudo apt install --yes python3-boto3                              # Install Boto3 python library
 
 # Run the following to initialize the databases and start the APIs
