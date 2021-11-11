@@ -18,10 +18,10 @@ poll_id = 0
 def createNewPoll(
     username: hug.types.text,
     pollQuestion: hug.types.text,
-    q1: hug.types.text,
-    q2: hug.types.text,
-    q3: hug.types.text,
-    q4: hug.types.text,
+    r1: hug.types.text,
+    r2: hug.types.text,
+    r3: hug.types.text,
+    r4: hug.types.text,
     response,
     dynamoDB = None
 ):
@@ -36,29 +36,95 @@ def createNewPoll(
         Item = {
             'poll_id': poll_id,
             'createdBy': username,
-            'info': {
+            'poll_data': {
                 'question': pollQuestion,
-                'response1': q1,
-                'response2': q2,
-                'response3': q3,
-                'response4': q4
-            }
+                'response1': r1,
+                'resp1Votes': 0,
+                'response2': r2,
+                'resp2Votes': 0,
+                'response3': r3,
+                'resp3Votes': 0,
+                'response4': r4,
+                'resp4Votes': 0,
+            },
+            'voted': []
         }
     )
     # increment the poll_id
     poll_id += 1
 
+    return {"New Poll": Item}
+
 # Vote in a poll
-@hug.post("/polls/{username}/vote/{poll_id}")
+@hug.post("/polls/{username}/vote/{poll_id}:{respNum}")
 def vote(
     username: hug.types.text,
     poll_id: hug.types.text,
+    respNum: hug.types.text,
     response,
     dynamoDB = None
 ):
+    voteCount = 0
+
     # Connect DynamoDB
     if not dynamodb: 
         dynamodb = boto3.resource('dynamodb', endpoint_url="http://localhost:8000")
+
+    table = dynamodb.Table('Polls')
+
+    try:
+        response1 = table.get_item(
+            Key = {'poll_id': poll_id, 'createdBy': username}
+        )
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+    else:
+        # Checks if a user already voted in this poll
+        for user in response1['Item']['voted']:
+            if username == user:
+                return {'ERROR': 'You Already Voted in This Poll'}
+
+        if respNum == 1:
+            voteCount = int(response1['Item']['poll_data']['resp1Votes'])
+        elif respNum == 2:
+            voteCount = int(response1['Item']['poll_data']['resp2Votes'])
+        elif respNum == 3:
+            voteCount = int(response1['Item']['poll_data']['resp3Votes'])
+        elif respNum == 4:
+            voteCount = int(response1['Item']['poll_data']['resp4Votes'])
+        else:
+            return {'ERROR': 'Not a Valid Response Number'}
+
+    voteCount += 1
+
+    if respNum == 1:
+        response2 = table.update_item(
+            Key = { 'poll_id': poll_id, 'createdBy': username },
+            UpdateExpression = "set poll_data.resp1Votes=:v",
+            ExpressionAttributes = { ':v': int(voteCount) },
+            ReturnValues = "UPDATED_NEW"
+        )
+    elif respNum == 2:
+        response2 = table.update_item(
+            Key = { 'poll_id': poll_id, 'createdBy': username },
+            UpdateExpression = "set poll_data.resp2Votes=:v",
+            ExpressionAttributes = { ':v': int(voteCount) },
+            ReturnValues = "UPDATED_NEW"
+        )
+    elif respNum == 3:
+        response2 = table.update_item(
+            Key = { 'poll_id': poll_id, 'createdBy': username },
+            UpdateExpression = "set poll_data.resp3Votes=:v",
+            ExpressionAttributes = { ':v': int(voteCount) },
+            ReturnValues = "UPDATED_NEW"
+        )
+    elif respNum == 4:
+        response2 = table.update_item(
+            Key = { 'poll_id': poll_id, 'createdBy': username },
+            UpdateExpression = "set poll_data.resp4Votes=:v",
+            ExpressionAttributes = { ':v': int(voteCount) },
+            ReturnValues = "UPDATED_NEW"
+        )
 
 # Get results of a poll given its ID
 @hug.get("/polls/results/{poll_id}")
