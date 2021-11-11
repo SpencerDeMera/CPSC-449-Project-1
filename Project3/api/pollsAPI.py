@@ -65,6 +65,7 @@ def vote(
     dynamoDB = None
 ):
     voteCount = 0
+    votedArr = []
 
     # Connect DynamoDB
     if not dynamodb: 
@@ -82,7 +83,10 @@ def vote(
         # Checks if a user already voted in this poll
         for user in response1['Item']['voted']:
             if username == user:
+                votedArr.clear()
                 return {'ERROR': 'You Already Voted in This Poll'}
+            else:
+                votedArr.append(user)
 
         if respNum == 1:
             voteCount = int(response1['Item']['poll_data']['resp1Votes'])
@@ -95,34 +99,37 @@ def vote(
         else:
             return {'ERROR': 'Not a Valid Response Number'}
 
+    # increment vote count
     voteCount += 1
+    # append username to end of voted array
+    votedArr.append(username)
 
     if respNum == 1:
         response2 = table.update_item(
             Key = { 'poll_id': poll_id, 'createdBy': username },
-            UpdateExpression = "set poll_data.resp1Votes=:v",
-            ExpressionAttributes = { ':v': int(voteCount) },
+            UpdateExpression = "set poll_data.resp1Votes=:v, voted=:n",
+            ExpressionAttributes = { ':v': int(voteCount), ':n': votedArr },
             ReturnValues = "UPDATED_NEW"
         )
     elif respNum == 2:
         response2 = table.update_item(
             Key = { 'poll_id': poll_id, 'createdBy': username },
-            UpdateExpression = "set poll_data.resp2Votes=:v",
-            ExpressionAttributes = { ':v': int(voteCount) },
+            UpdateExpression = "set poll_data.resp2Votes=:v, voted=:n",
+            ExpressionAttributes = { ':v': int(voteCount), ':n': votedArr  },
             ReturnValues = "UPDATED_NEW"
         )
     elif respNum == 3:
         response2 = table.update_item(
             Key = { 'poll_id': poll_id, 'createdBy': username },
-            UpdateExpression = "set poll_data.resp3Votes=:v",
-            ExpressionAttributes = { ':v': int(voteCount) },
+            UpdateExpression = "set poll_data.resp3Votes=:v, voted=:n",
+            ExpressionAttributes = { ':v': int(voteCount), ':n': votedArr  },
             ReturnValues = "UPDATED_NEW"
         )
     elif respNum == 4:
         response2 = table.update_item(
             Key = { 'poll_id': poll_id, 'createdBy': username },
-            UpdateExpression = "set poll_data.resp4Votes=:v",
-            ExpressionAttributes = { ':v': int(voteCount) },
+            UpdateExpression = "set poll_data.resp4Votes=:v, voted=:n",
+            ExpressionAttributes = { ':v': int(voteCount), ':n': votedArr  },
             ReturnValues = "UPDATED_NEW"
         )
 
