@@ -123,5 +123,3 @@ def getPopularPosts(response):
 
     # JSON serialize to json for output
     return {msg: popPostsArr}
-
-# hug.API(__name__).http.serve(port=8005) # temporary

@@ -13,7 +13,7 @@ This project uses a variety of tools and services to power two RESTful back-end 
     * FILES likesAPI.py, pollsAPI.py, & srvcRegAPI.py. Files for likes, polls, and servce registry microservices
     * FILES data/users.csv, data/followers.csv & data/posts.csv. CSV schema files for each database.
     * FOLDER log. Log folder to contain api.log files.
-    * FILES bin/init.sh & bin/foreman.sh. Initilization scripts for database schemas and foreman start.
+    * FILES bin/init.sh, bin/foreman.sh & dataStores.sh. Initilization scripts for database schemas, foreman start and NoSQL data stores.
     * FILE bin/initPolls.py. Initilization scripts for polls service DynamoDB datastore.
     * FILES configs/userAPI.ini & postAPI.ini. Initilization files for SQLite DBs.
     * FILE configs/logging.ini. Initilization file for SQLite logging and configs.
@@ -56,6 +56,7 @@ $ pip install boto3                                                 # Alt. insta
 $ cd api
 $ ./bin/init.sh                                                      # Creates and initalizes user and post db files and tables
 $ ./bin/foreman.sh                                                   # Starts the foreman and HAProxy api services
+$ ./bin/dataStores.sh                                                # Starts & initializes Redis and DynamoDB data stores
 ```
 
 ## Running
@@ -77,6 +78,9 @@ $ ./bin/foreman.sh                                                   # Starts th
 `getLikes(post_id)`                         | `GET /likes/getLikes:<post_id>`                           | Number of likes post has given its ID
 `getLiked(username)`                        | `GET /likes/<username>`                                   | Get list of posts liked by a user
 `getPopularPosts()`                         | `GET /posts/popular`                                      | Get list of liked posts ordered by number of likes
+`createNewPoll(username, question, resps.)` | `POST /polls/<username>/create`                           | Creates a new poll given username, question, and responses
+`vote(username, poll_id, respNum)`          | `POST /polls/<username>/vote/<poll_id>:<respNum>`         | Adds vote to response respNum & tracks who has voted 
+`getPollResults(poll_id)`                   | `GET /polls/results:<poll_id>`                            | Gets the results of a poll given its ID
 
 ## Issues & Incomplete Functionalities
 * Issues
@@ -99,3 +103,15 @@ $ ./bin/foreman.sh                                                   # Starts th
     * [guinicorn](https://gunicorn.org/)
     * [HAProxy documentation](https://www.haproxy.org/)
     * [Python Requests library](https://docs.python-requests.org/en/latest/)
+    * [Redis](https://redis.io/)
+    * [Redis-py](https://pypi.org/project/redis/)
+    * [Hiredis Parser](https://github.com/redis/hiredis)
+    * [Redis-py Commands](https://github.com/redis/redis-py/blob/master/redis/commands/core.py)
+    * [DynamoDB Deployment](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html)
+    * [DynamoDB Usage](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.Python.html)
+    * [Boto3 Library](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
+    * [Hug Decorators for Service Registries](https://hugapi.github.io/hug/reference/hug/decorators/)
+    * [Service Registry Pattern](https://microservices.io/patterns/service-registry.html)
+    * [Creating Microservices Registrys](https://dzone.com/articles/creating-a-microservices-registry)
+    * [Threading in Python](https://realpython.com/intro-to-python-threading/)
+    * [Pyhton OS Functions](https://docs.python.org/3/library/os.html#os.environ)
