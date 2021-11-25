@@ -36,13 +36,20 @@ $ sudo apt install --yes python3-hiredis                            # Install re
 # Some python3 instances won't install redis-py with the above command, must use below \/
 $ python3 -m pip install redis                                      # Alt. install for python3 install failure
 # DynamoDB
-```
-Follow the instructions at [DynamoDB Local Install Guide](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html) until step #4
-```shell
 # Use the following commands upon reaching step #4 of the above guide
-$ sudo apt install --yes awscli                                     # Install the AWS CLI 
-$ aws configure                                                     # Configure the AWS instance w/ necessary parameters
+$ sudo apt install --yes awscli                                     # Install the AWS CLI parameters
+```
+* Follow the instructions at [DynamoDB Local Install Guide](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html).
+* WARNING: Make sure to install the DynamoDB file in Step #1 OUTSIDE of the project directory (outside of Project3 Folder Directory)
+```shell
+# STEP #3
+# Open a new, additional, terminal window in the directory of your extracted dynamodb_local_latest folder 
+$ cd dynamodb_local_latest
+$ java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb
+# leave this running in this terminal window. Return to other window for step #4
+# STEP #4
 # Configure with:
+$ aws configure                                                     # Configure the AWS instance w/ necessary 
 AWS Access Key ID [None]: fakeMyKeyId
 AWS Secret Access Key [None]: fakeSecretAccessKey
 Default region name [None]: us-west-2
@@ -56,7 +63,12 @@ $ pip install boto3                                                 # Alt. insta
 $ cd api
 $ ./bin/init.sh                                                      # Creates and initalizes user and post db files and tables
 $ ./bin/foreman.sh                                                   # Starts the foreman and HAProxy api services
-$ ./bin/dataStores.sh                                                # Starts & initializes Redis and DynamoDB data stores
+
+# Start the data stores files
+$ redis-server                                                       # Starts the redis server
+$ cd bin
+$ python3 initPolls.py                                               # Initialize the Polls table & create a default poll
+cd ..                                                                # Gets you back to the api directory
 ```
 
 ## Running
