@@ -36,7 +36,7 @@ $ sudo apt install --yes python3-hiredis                            # Install re
 # Some python3 instances won't install redis-py with the above command, must use below \/
 $ python3 -m pip install redis                                      # Alt. install for python3 install failure
 # DynamoDB
-# Use the following commands upon reaching step #4 of the above guide
+# Use the following commands
 $ sudo apt install --yes awscli                                     # Install the AWS CLI parameters
 ```
 * Follow the instructions at [DynamoDB Local Install Guide](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html).
