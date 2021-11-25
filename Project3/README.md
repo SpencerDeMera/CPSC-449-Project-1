@@ -68,7 +68,7 @@ $ ./bin/foreman.sh                                                   # Starts th
 $ redis-server                                                       # Starts the redis server
 $ cd bin
 $ python3 initPolls.py                                               # Initialize the Polls table & create a default poll
-cd ..                                                                # Gets you back to the api directory
+$ cd ..                                                                # Gets you back to the api directory
 ```
 
 ## Running
