@@ -29,25 +29,6 @@ def sqlite(section="sqlite", key="dbfile", **kwargs):
 def log(name=__name__, **kwargs):
     return logging.getLogger(name)
 
-# Get post by ID
-@hug.get("/posts/getPost:{post_id}")
-def getPost(
-    post_id: hug.types.text,
-    response,
-    db: sqlite
-):
-    # Checks if post_id is valid
-    posts = sqlite_utils.Database("./data/posts.db")
-    for row in posts.query(
-        "SELECT * FROM posts WHERE id=:postID",
-        {"postID": int(post_id)}
-    ):
-        # If post with post_id is real 
-        if row != None:
-            return True
-        else:
-            return False
-
 # User Timeline
 @hug.get("/posts/{username}/user")
 def getUserTimeline(response, username: hug.types.text, db: sqlite):

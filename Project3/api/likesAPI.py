@@ -27,42 +27,34 @@ def likePost(
     response
 ):  
     alertMsg = "Post: " + post_id + " Liked By: " + username
-    # Calls method in postAPI.py to check if post_id is valid
-    url = "http://localhost:8000/posts/" + str(username) + "/getPost:" + post_id
-    realID = requests.get(url).json()
+    
+    # If post already has a like
+    if r.exists(post_id) and not r.sismember(username, post_id): 
+        likesCtr = json.loads(r.get(post_id))['likes'] + 1
 
-    # If post_id is valid
-    if realID:
-        # If post already has a like
-        if r.exists(post_id) and not r.sismember(username, post_id): 
-            likesCtr = json.loads(r.get(post_id))['likes'] + 1
-
-            newLike = {
-                "likes": likesCtr 
-            }
-            # Converts dict to string and sets it as 'value' of key 'test' in a Redis String
-            r.set(post_id, json.dumps(newLike))
-            # Add post to set of posts liked by user
-            r.sadd(username, post_id)
-            r.zadd(popularKey, {post_id: likesCtr})
-        # User has already liked this post
-        elif r.exists(post_id) and r.sismember(username, post_id):
-            return {"ERROR": "You Already Liked This Post"}
-        # Post has not been liked by anyone
-        else:
-            newLike = {
-                "likes": 1
-            }
-            # Converts dict to string and sets it as 'value' of key 'test' in a Redis String
-            r.set(post_id, json.dumps(newLike))
-            r.sadd(username, post_id)
-            likes = 1
-            r.zadd(popularKey, {post_id: likes})
+        newLike = {
+            "likes": likesCtr 
+        }
+        # Converts dict to string and sets it as 'value' of key 'test' in a Redis String
+        r.set(post_id, json.dumps(newLike))
+        # Add post to set of posts liked by user
+        r.sadd(username, post_id)
+        r.zadd(popularKey, {post_id: likesCtr})
+    # User has already liked this post
+    elif r.exists(post_id) and r.sismember(username, post_id):
+        return {"ERROR": "You Already Liked This Post"}
+    # Post has not been liked by anyone
+    else:
+        newLike = {
+            "likes": 1
+        }
+        # Converts dict to string and sets it as 'value' of key 'test' in a Redis String
+        r.set(post_id, json.dumps(newLike))
+        r.sadd(username, post_id)
+        likes = 1
+        r.zadd(popularKey, {post_id: likes})
         # Converts from string dict to dict and returns as JSON
         return {"ALERT": alertMsg}
-    else:
-        # JSON serialize to json for output
-        return {"ERROR": "Invalid Post ID"}
 
 # Get like count of post with ID 'post_id'
 @hug.get("/likes/getLikes:{post_id}")
