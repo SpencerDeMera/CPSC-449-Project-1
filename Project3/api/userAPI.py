@@ -7,6 +7,8 @@ import logging.config
 import hug
 import sqlite_utils
 import urllib.parse
+import os
+import socket
 
 # Parser configuator function 
 #   Code provided by instructor
@@ -37,6 +39,14 @@ def userAuth(username, password):
             return True
         else:
             return False
+
+# Startup function
+@hug.startup()
+def startup(self):
+    print("Starting Users Service...")
+    home = os.environ.get('PORT')
+    domainName = socket.getfqdn()
+    print("HOME: " + str(home) + " && FQDN: " + domainName)
 
 # Create a new user and add to table of users
 @hug.post("/users/addUser")

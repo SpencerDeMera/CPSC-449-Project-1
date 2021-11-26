@@ -9,6 +9,8 @@ import sqlite_utils
 import requests
 import datetime
 from userAPI import userAuth
+import os
+import socket
 
 # Parser configuator function 
 #   Code provided by instructor
@@ -28,6 +30,14 @@ def sqlite(section="sqlite", key="dbfile", **kwargs):
 @hug.directive()
 def log(name=__name__, **kwargs):
     return logging.getLogger(name)
+
+# Startup function
+@hug.startup()
+def startup(self):
+    print("Starting POSTS Service...")
+    home = os.environ.get('PORT')
+    domainName = socket.getfqdn()
+    print("HOME: " + str(home) + " && FQDN: " + domainName)
 
 # User Timeline
 @hug.get("/posts/{username}/user")
