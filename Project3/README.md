@@ -9,6 +9,7 @@ This project uses a variety of tools and services to power two RESTful back-end 
 * FOLDER api. Folder that contains all api files.
     * FILE Procfile. Procfile for foreman service definitions.
     * FILE .env. Env file for avoiding missing input.
+    * FILE haproxy.cfg. HAProxy configuration file.
     * FILES userAPI.py & postAPI.py. User and Post API files.
     * FILES likesAPI.py, pollsAPI.py, & srvcRegAPI.py. Files for likes, polls, and servce registry microservices
     * FILES data/users.csv, data/followers.csv & data/posts.csv. CSV schema files for each database.
@@ -27,7 +28,7 @@ $ sudo apt install --yes python3-pip ruby-foreman httpie sqlite3     # Install p
 $ python3 -m pip install hug sqlite-utils                            # Install hug and Python sqlite-utils libraries
 # Log out then back in to ensure all PATH changes are established
 $ sudo apt install --yes haproxy gunicorn                            # Install production tools
-$ python3 -m pip install pyhton-dotenv
+$ python3 -m pip install pyhton-dotenv                               # Installs tool for reading environment variables
 
 # Install reids and DyanmoDB data stores
 # Redis
