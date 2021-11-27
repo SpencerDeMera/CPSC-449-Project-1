@@ -47,7 +47,7 @@ def startup(self):
     print("Starting USERS Service...")
     load_dotenv()
     port = os.environ.get('userAPI')
-    domainName = socket.getfqdn()
+    domainName = socket.gethostbyname(socket.getfqdn())
     print("PORT: " + str(port) + " && FQDN: " + domainName)
 
 # Health check function
