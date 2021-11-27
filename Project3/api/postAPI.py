@@ -11,6 +11,7 @@ import datetime
 from userAPI import userAuth
 import os
 import socket
+from dotenv import load_dotenv
 
 # Parser configuator function 
 #   Code provided by instructor
@@ -35,9 +36,22 @@ def log(name=__name__, **kwargs):
 @hug.startup()
 def startup(self):
     print("Starting POSTS Service...")
-    home = os.environ.get('PORT')
-    domainName = socket.getfqdn()
-    print("HOME: " + str(home) + " && FQDN: " + domainName)
+    load_dotenv()
+    ctr = 0
+    portCtr = os.environ.get('PostAPI_num')
+    port = os.environ.get('postAPI')
+    while ctr < int(portCtr):
+        domainName = socket.gethostbyname(socket.getfqdn())
+        print("PORT: " + str(port) + " && FQDN: " + domainName)
+        temp = int(port)
+        temp += 1
+        port = temp
+        ctr += 1
+
+# Health check function
+@hug.get("/posts/health")
+def healthy(response):
+    return {"Posts Health Check": "Done"}
 
 # User Timeline
 @hug.get("/posts/{username}/user")

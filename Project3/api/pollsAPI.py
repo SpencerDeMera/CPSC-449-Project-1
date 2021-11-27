@@ -235,4 +235,4 @@ def getPollResults(
 
     return jsonData
 
-hug.API(__name__).http.serve(port=8005) # temporary
+# hug.API(__name__).http.serve(port=8005) # temporary

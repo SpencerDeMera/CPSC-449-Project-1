@@ -9,6 +9,7 @@ import sqlite_utils
 import urllib.parse
 import os
 import socket
+from dotenv import load_dotenv
 
 # Parser configuator function 
 #   Code provided by instructor
@@ -43,10 +44,16 @@ def userAuth(username, password):
 # Startup function
 @hug.startup()
 def startup(self):
-    print("Starting Users Service...")
-    home = os.environ.get('PORT')
+    print("Starting USERS Service...")
+    load_dotenv()
+    port = os.environ.get('userAPI')
     domainName = socket.getfqdn()
-    print("HOME: " + str(home) + " && FQDN: " + domainName)
+    print("PORT: " + str(port) + " && FQDN: " + domainName)
+
+# Health check function
+@hug.get("/posts/health")
+def healthy(response):
+    return {"Users Health Check": "Done"}
 
 # Create a new user and add to table of users
 @hug.post("/users/addUser")
