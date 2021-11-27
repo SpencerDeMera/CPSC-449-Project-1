@@ -13,8 +13,29 @@ from boto3.dynamodb.conditions import Key
 import json
 import string
 import random
+import os
+import socket
+import time
+from dotenv import load_dotenv
+import requests
 
 dynamodb = boto3.client('dynamodb', region_name='us-west-2', endpoint_url="http://localhost:8000")
+
+# Startup function
+@hug.startup()
+def startup(self):
+    time.sleep(10)
+    load_dotenv()
+    port = os.environ.get('pollsAPI')
+    srvcPort = os.environ.get('srvcRegAPI')
+    domainName = socket.gethostbyname(socket.getfqdn())
+    pload = {'name': 'polls', 'domainName': domainName, 'port': port}
+    r = requests.post(domainName + ":" + srvcPort + "/register", data=pload)
+
+# Health check function
+@hug.get("/health")
+def healthy(response):
+    return {"Polls Health Check": "Done"}
 
 # Create a new poll
 @hug.post("/polls/{username}/create")
@@ -234,5 +255,3 @@ def getPollResults(
     jsonData = json.loads(data)
 
     return jsonData
-
-# hug.API(__name__).http.serve(port=8005) # temporary

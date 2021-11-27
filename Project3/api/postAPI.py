@@ -35,21 +35,21 @@ def log(name=__name__, **kwargs):
 # Startup function
 @hug.startup()
 def startup(self):
-    print("Starting POSTS Service...")
+    time.sleep(10)
     load_dotenv()
     ctr = 0
     portCtr = os.environ.get('PostAPI_num')
     port = os.environ.get('postAPI')
+    srvcPort = os.environ.get('srvcRegAPI')
+    domainName = socket.gethostbyname(socket.getfqdn())
     while ctr < int(portCtr):
-        domainName = socket.gethostbyname(socket.getfqdn())
-        print("PORT: " + str(port) + " && FQDN: " + domainName)
-        temp = int(port)
-        temp += 1
-        port = temp
+        pload = {'name': 'posts', 'domainName': domainName, 'port': port}
+        r = requests.post(domainName + ":" + srvcPort + "/register", data=pload)
+        port += 1
         ctr += 1
 
 # Health check function
-@hug.get("/posts/health")
+@hug.get("/health")
 def healthy(response):
     return {"Posts Health Check": "Done"}
 
@@ -80,7 +80,7 @@ def getHomeTimeline(response, username: hug.types.text, db: sqlite, logger:log):
         posts = sqlite_utils.Database("./data/posts.db")
 
         # TODO: Get usernames of those followed by {username}
-        url = "http://localhost:8000/users/" + str(username) + "/getFollowing"
+        url = "http://localhost:8100/users/" + str(username) + "/getFollowing"
         
         followingUsers  = requests.get(url).json()
         

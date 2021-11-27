@@ -12,12 +12,32 @@ import hug
 import redis
 import json
 import requests
+import os
+import socket
+import time
+from dotenv import load_dotenv
 
 redisHost = "localhost"
 redisPort = 6379
 popularKey = "popPosts"
 
 r = redis.Redis(host = redisHost, port = redisPort, decode_responses=True)
+
+# Startup function
+@hug.startup()
+def startup(self):
+    time.sleep(10)
+    load_dotenv()
+    port = os.environ.get('likesAPI')
+    srvcPort = os.environ.get('srvcRegAPI')
+    domainName = socket.gethostbyname(socket.getfqdn())
+    pload = {'name': 'likes', 'domainName': domainName, 'port': port}
+    r = requests.post(domainName + ":" + srvcPort + "/register", data=pload)
+
+# Health check function
+@hug.get("/health")
+def healthy(response):
+    return {"Likes Health Check": "Done"}
 
 # Like a post
 @hug.post("/posts/{username}/like/{post_id}")

@@ -1,4 +1,4 @@
-# CPSC 449 Project-2
+# CPSC 449 Project-3
 ## Spencer DeMera & Ricardo Segarra
 
 ## Project Description:
@@ -27,6 +27,7 @@ $ sudo apt install --yes python3-pip ruby-foreman httpie sqlite3     # Install p
 $ python3 -m pip install hug sqlite-utils                            # Install hug and Python sqlite-utils libraries
 # Log out then back in to ensure all PATH changes are established
 $ sudo apt install --yes haproxy gunicorn                            # Install production tools
+$ python3 -m pip install pyhton-dotenv
 
 # Install reids and DyanmoDB data stores
 # Redis
@@ -77,6 +78,8 @@ $ cd ..                                                                # Gets yo
 
  API Call                                   | Route                                                     | Action
 --------------------------------------------|-----------------------------------------------------------|-------------------------------------------------------
+`startup(self)`                             | `STARTUP`                                                 | Runs on startup to register the service (One for each service)
+`healthy()`                                 | `GET /health`                                             | Function for service registry health check (One for each service)
 `addUser(username, password, email, bio)`   | `POST /users/addUser`                                     | Adds a new user to database
 `followUser(username, following_username)`  | `POST /users/<username>/followUser/<following_username>`  | Follow a new user
 `getFollowing(username)`                    | `GET /users/<username>/getFollowing`                      | Get all usernames followed by given user
@@ -92,6 +95,10 @@ $ cd ..                                                                # Gets yo
 `createNewPoll(username, question, resps.)` | `POST /polls/<username>/create`                           | Creates a new poll given username, question, and responses
 `vote(username, poll_id, respNum)`          | `POST /polls/<username>/vote/<poll_id>:<respNum>`         | Adds vote to response respNum & tracks who has voted 
 `getPollResults(poll_id)`                   | `GET /polls/results:<poll_id>`                            | Gets the results of a poll given its ID
+`healthCheck()`                             |                                                           | Function for healthchecks
+`daemon_function(name)`                     |                                                           | Function for daemon thread function calling
+`main(self)`                                | `STARTUP`                                                 | Main function for service registry
+`registry(name, domainName, port)`          | `POST /registers`                                         | Function for registering microservices
 
 ## Issues & Incomplete Functionalities
 * Issues
@@ -99,6 +106,10 @@ $ cd ..                                                                # Gets yo
         * addUser will output JSON with the number of users instead of username in `username` when displayed after run
         * The actual new user object created by addUser will actually have the created username value in `username`
             * Not sure what is causing said issue, insufficent time to resolve issue
+    * Foreman is non-operable on both our WSL & Tuffic installations regardless of restarts OR reinstalls
+        * All components work separately and together when using `hug -f <filename>` commands
+            * There is no guarentee that all will work with foreman together unfortunately
+            * Insufficient information available & time to complete
 * Incomplete functions
     * Repost code is fully implemented but the server throws HTTP 405 upon POST request
         * Insufficient time to resolve issue
@@ -126,3 +137,5 @@ $ cd ..                                                                # Gets yo
     * [Creating Microservices Registrys](https://dzone.com/articles/creating-a-microservices-registry)
     * [Threading in Python](https://realpython.com/intro-to-python-threading/)
     * [Pyhton OS Functions](https://docs.python.org/3/library/os.html#os.environ)
+    * [Python dotenv](https://pypi.org/project/python-dotenv/)
+    * [Python Healthchecks Examples](https://pypi.org/project/healthcheck-python/)

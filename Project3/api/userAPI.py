@@ -9,7 +9,9 @@ import sqlite_utils
 import urllib.parse
 import os
 import socket
+import time
 from dotenv import load_dotenv
+import requests
 
 # Parser configuator function 
 #   Code provided by instructor
@@ -44,14 +46,16 @@ def userAuth(username, password):
 # Startup function
 @hug.startup()
 def startup(self):
-    print("Starting USERS Service...")
+    time.sleep(10)
     load_dotenv()
     port = os.environ.get('userAPI')
+    srvcPort = os.environ.get('srvcRegAPI')
     domainName = socket.gethostbyname(socket.getfqdn())
-    print("PORT: " + str(port) + " && FQDN: " + domainName)
+    pload = {'name': 'users', 'domainName': domainName, 'port': port}
+    r = requests.post("http://" + domainName + ":" + srvcPort + "/register", data=pload)
 
 # Health check function
-@hug.get("/posts/health")
+@hug.get("/health")
 def healthy(response):
     return {"Users Health Check": "Done"}
 
@@ -132,3 +136,5 @@ def getFollowing(
     except sqlite_utils.db.NotFoundError:
         response.status = hug.falcon.HTTP_404
     return followingUsers
+
+hug.API(__name__).http.serve(port=8100) # temporary
