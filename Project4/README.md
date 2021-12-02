@@ -108,6 +108,7 @@ $ cd ..                                                                # Gets yo
 `registry(name, domainName, port)`          | `POST /register`                                         | Function for registering microservices
 
 ## Fixes 
+* Notable bug fixes
     * Fixed issue where userAPI.py fails to launch in Project3
         * Line 140 of userAPI.py had an unremoved devlopment testing line that hardcoded the PORT
         * May also be related to why HAProxy failed to proxy user service in Project2 and Project3
