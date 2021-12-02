@@ -1,4 +1,4 @@
-# Spencer and Ricardo's Repo for 
+# Repo for 
 # CPSC 449 Web Back-End Engineering
 
 - - - -
