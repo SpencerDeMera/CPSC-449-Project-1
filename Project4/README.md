@@ -1,5 +1,5 @@
 # CPSC 449 Project-4
-## Spencer DeMera & Ricardo Segarra
+## Spencer DeMera, Ricardo Segarra & 
 
 ## [Project 4 GitHub](https://github.com/SpencerDeMera/CPSC-449-Projects/tree/main/Project4)
 
