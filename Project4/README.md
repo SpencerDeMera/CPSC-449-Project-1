@@ -1,7 +1,7 @@
 # CPSC 449 Project-4
 ## Spencer DeMera & Ricardo Segarra
 
-[Project 4 GitHub](https://github.com/SpencerDeMera/CPSC-449-Projects/tree/main/Project4)
+## * [Project 4 GitHub](https://github.com/SpencerDeMera/CPSC-449-Projects/tree/main/Project4)
 
 ## Project Description:
 This project uses a variety of tools and services to power two RESTful back-end services that facilitate user interaction and communication via digital blogging. Users can view three different timelines, follow other users, create new posts, users can be added, and repost other posts. Additionally, users can now like posts and conduct polls while being able to view the results/metadata of both.
