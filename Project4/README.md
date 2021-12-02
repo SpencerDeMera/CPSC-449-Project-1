@@ -109,7 +109,7 @@ $ cd ..                                                                # Gets yo
 `main(self)`                                | `STARTUP`                                                 | Main function for service registry
 `registry(name, domainName, port)`          | `POST /register`                                         | Function for registering microservices
 
-## Fixes 
+## Resolved Issues
 * Notable bug fixes
     * Fixed issue where userAPI.py fails to launch in Project3
         * Line 140 of userAPI.py had an unremoved devlopment testing line that hardcoded the PORT
