@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # Create users and posts .db files
-cd ..
 cd data
 touch users.db
 touch posts.db
