@@ -66,6 +66,9 @@ $ pip install boto3                                                 # Alt. insta
 # Install Beanstalkd and Greenstalk Python client libraries
 $ sudo apt install --yes beanstalkd                                 # Install beanstalked 
 $ python3 -m pip install greenstalk                                 # Install greenstalk python library
+
+# Install hey for performance testing 
+$ sudo apt install --yes hey
 ```
 * Initializing DB schemas and starting server instances
 ```shell
@@ -109,7 +112,7 @@ $ cd ..                                                                # Gets yo
 `main(self)`                                | `STARTUP`                                                 | Main function for service registry
 `registry(name, domainName, port)`          | `POST /register`                                         | Function for registering microservices
 
-## Resolved Issues
+## Resolved Issues 
 * Notable bug fixes
     * Fixed issue where userAPI.py fails to launch in Project3
         * Line 140 of userAPI.py had an unremoved devlopment testing line that hardcoded the PORT
