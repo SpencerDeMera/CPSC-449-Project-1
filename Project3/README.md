@@ -61,6 +61,10 @@ $ sudo apt install --yes python3-boto3                              # Install Bo
 # Some python3 instances won't install boto3 with the above command, must use below \/
 $ pip install boto3                                                 # Alt. install for DynamoDB boto3 python3 install failure
 
+# Install Beanstalkd and Greenstalk Python client libraries
+$ sudo apt install --yes beanstalkd                                 # Install beanstalked 
+$ python3 -m pip install greenstalk                                 # Install greenstalk python library
+
 # Run the following to initialize the databases and start the APIs
 $ cd api
 $ ./bin/init.sh                                                      # Creates and initalizes user and post db files and tables

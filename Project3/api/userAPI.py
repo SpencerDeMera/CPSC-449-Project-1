@@ -136,5 +136,3 @@ def getFollowing(
     except sqlite_utils.db.NotFoundError:
         response.status = hug.falcon.HTTP_404
     return followingUsers
-
-hug.API(__name__).http.serve(port=8100) # temporary
