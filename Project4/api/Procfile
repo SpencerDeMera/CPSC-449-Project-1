@@ -1,0 +1,4 @@
+userAPI: gunicorn  --access-logfile  - --capture-output userAPI:__hug_wsgi__
+postAPI: gunicorn  --access-logfile  - --capture-output postAPI:__hug_wsgi__
+likesAPI: gunicorn  --access-logfile  - --capture-output likesAPI:__hug_wsgi__
+pollsAPI: gunicorn  --access-logfile  - --capture-output pollsAPI:__hug_wsgi__
