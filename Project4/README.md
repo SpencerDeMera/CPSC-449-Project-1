@@ -112,10 +112,10 @@ $ cd ..                                                                # Gets yo
     * Fixed issue where userAPI.py fails to launch in Project3
         * Line 140 of userAPI.py had an unremoved devlopment testing line that hardcoded the PORT
         * May also be related to why HAProxy failed to proxy user service in Project2 and Project3
-    * Fixed issue where db schemnas failed to be properly created and initalized
+    * Fixed issue where db schemas failed to be properly created and initalized
         * Caused by additional `cd ..` on line 4 of init.sh file
     * Fixed issue where getLikes(post_id) fails in Project3
-        * Function called phantom function in postAPI.py that no longer existed for post_id verification
+        * getLikes called phantom function in postAPI.py for post_id verification that no longer existed
 
 ## Issues & Incomplete Functionalities
 * Issues
