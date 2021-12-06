@@ -8,10 +8,13 @@ import hug
 import sqlite_utils
 import requests
 import datetime
+import json
+import time
 from userAPI import userAuth
 import os
 import socket
 from dotenv import load_dotenv
+import greenstalk
 
 # Parser configuator function 
 #   Code provided by instructor
@@ -33,20 +36,20 @@ def log(name=__name__, **kwargs):
     return logging.getLogger(name)
 
 # Startup function
-@hug.startup()
-def startup(self):
-    time.sleep(10)
-    load_dotenv()
-    ctr = 0
-    portCtr = os.environ.get('PostAPI_num')
-    port = os.environ.get('postAPI')
-    srvcPort = os.environ.get('srvcRegAPI')
-    domainName = socket.gethostbyname(socket.getfqdn())
-    while ctr < int(portCtr):
-        pload = {'name': 'posts', 'domainName': domainName, 'port': port}
-        r = requests.post(domainName + ":" + srvcPort + "/register", data=pload)
-        port += 1
-        ctr += 1
+# @hug.startup()
+# def startup(self):
+#     time.sleep(10)
+#     load_dotenv()
+#     ctr = 0
+#     portCtr = os.environ.get('PostAPI_num')
+#     port = os.environ.get('postAPI')
+#     srvcPort = os.environ.get('srvcRegAPI')
+#     domainName = socket.gethostbyname(socket.getfqdn())
+#     while ctr < int(portCtr):
+#         pload = {'name': 'posts', 'domainName': domainName, 'port': port}
+#         r = requests.post(domainName + ":" + srvcPort + "/register", data=pload)
+#         port += 1
+#         ctr += 1
 
 # Health check function
 @hug.get("/health")
@@ -85,6 +88,7 @@ def getHomeTimeline(response, username: hug.types.text, db: sqlite, logger:log):
         followingUsers  = requests.get(url).json()
         
         # get all posts in DESC order according to timestamp
+        # use WITH in SQL
         for post in posts.query(
             "SELECT * FROM posts ORDER BY timestamp DESC"
         ):
@@ -122,7 +126,7 @@ def getPublicTimeline(response, db: sqlite):
     return {"posts": postArr}
 
 #create new Post
-@hug.post("/posts/{username}/newPost", requires=hug.authentication.basic(userAuth))
+@hug.post("/posts/{username}/newPost",requires=hug.authentication.basic(userAuth))
 def newPost(
     username: hug.types.text,
     message: hug.types.text,
@@ -145,7 +149,7 @@ def newPost(
         "id": ctr,
         "author_username": username,
         "message": message,
-        "human_timestamp": ct,
+        "human_timestamp": str(ct),
         "timestamp": ts,
         "origin_URL": None
     }
@@ -159,7 +163,58 @@ def newPost(
         response.set_header("Location", f"/posts/{newPost['id']}")
     return newPost
 
+# ASYNC newPost method
+@hug.post("/posts/async/{username}/newPost")
+def newAsyncPost(
+    username: hug.types.text,
+    message: hug.types.text,
+    response,
+    db: sqlite,
+):
+    postsArr = db["posts"]
+    posts = sqlite_utils.Database("./data/posts.db")
+    ctr = 0
+    ct = datetime.datetime.now()
+    ts = ct.timestamp()
+    port = os.environ.get('postConsumer')
+    domainName = socket.gethostbyname(socket.getfqdn())
+    # client = greenstalk.Client((domainName, port))
+    # client = greenstalk.Client(('127.0.0.1', 11300))
+    with greenstalk.Client(('127.0.0.1', 8000)) as client:
+
+        # Gets count of rows already in table
+        for post in posts.query("SELECT P.id FROM posts P"):
+            ctr += 1
+
+        # creates new user object with input data
+        ctr+=1
+        newAsyncPost = json.dumps({
+            "id": ctr,
+            "author_username": username,
+            "message": message,
+            "human_timestamp": str(ct),
+            "timestamp": ts,
+            "origin_URL": None
+        })
+        client.put(newAsyncPost) # inserts job 
+
+        # For Testing: should be done in postConsumer.py somehow
+        while True:
+            job = client.reserve()
+            print(job.body)
+            data = json.loads(job.body)
+
+            try:
+                postsArr.insert(data)
+                newAsyncPost["id"] = postsArr.last_pk
+            except Exception as e:
+                response.status = hug.falcon.HTTP_409
+                return {"error": str(e)}
+                response.set_header("Location", f"/posts/{newPost['id']}")
+            return newAsyncPost
+
 # repost functionality
+# ISSUE: broken
 @hug.post("/posts/{username}/repost/{original_username}&{id}")
 def repost(
     username: hug.types.text,
@@ -208,3 +263,5 @@ def repost(
         return {"error": str(e)}
         response.set_header("Location", f"/posts/{newRepost['id']}")
     return newRepost
+
+hug.API(__name__).http.serve(port=8000) # Force hug onto port 8000 # TESTING

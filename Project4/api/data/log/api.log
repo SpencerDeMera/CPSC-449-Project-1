@@ -425,3 +425,11 @@
 [2021-12-01 19:25:35,147] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): 127.0.1.1:8500
 [2021-12-01 19:25:54,739] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): 127.0.1.1:8500
 [2021-12-01 20:26:32,476] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): 127.0.1.1:8500
+[2021-12-01 21:58:52,475] DEBUG in urllib3.connectionpool: Starting new HTTP connection (1): 127.0.1.1:8500
+[2021-12-05 15:43:11,422] DEBUG in asyncio: Using selector: EpollSelector
+[2021-12-05 15:46:51,900] DEBUG in asyncio: Using selector: EpollSelector
+[2021-12-05 15:50:22,842] DEBUG in asyncio: Using selector: EpollSelector
+[2021-12-05 15:50:32,418] DEBUG in asyncio: Using selector: EpollSelector
+[2021-12-05 15:50:48,281] DEBUG in asyncio: Using selector: EpollSelector
+[2021-12-05 15:59:20,160] DEBUG in asyncio: Using selector: EpollSelector
+[2021-12-05 15:59:48,521] DEBUG in asyncio: Using selector: EpollSelector

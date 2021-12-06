@@ -44,15 +44,15 @@ def userAuth(username, password):
             return False
 
 # Startup function
-@hug.startup()
-def startup(self):
-    time.sleep(10)
-    load_dotenv()
-    port = os.environ.get('userAPI')
-    srvcPort = os.environ.get('srvcRegAPI')
-    domainName = socket.gethostbyname(socket.getfqdn())
-    pload = {'name': 'users', 'domainName': domainName, 'port': port}
-    r = requests.post("http://" + domainName + ":" + srvcPort + "/register", data=pload)
+# @hug.startup()
+# def startup(self):
+#     time.sleep(10)
+#     load_dotenv()
+#     port = os.environ.get('userAPI')
+#     srvcPort = os.environ.get('srvcRegAPI')
+#     domainName = socket.gethostbyname(socket.getfqdn())
+#     pload = {'name': 'users', 'domainName': domainName, 'port': port}
+#     r = requests.post("http://" + domainName + ":" + srvcPort + "/register", data=pload)
 
 # Health check function
 @hug.get("/health")
@@ -101,7 +101,7 @@ def followUser(
     ctr = 0
 
     # Gets count of rows already in table
-    for user in followers.query("SELECT F.id FROM following F"):
+    for user in db.query("SELECT F.id FROM following F"):
         ctr += 1
 
     newFollower = {
