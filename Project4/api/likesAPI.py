@@ -53,6 +53,35 @@ def likePost(
     # connect greenstalk client
     client = greenstalk.Client(('127.0.0.1', 8000))
 
+    # If post already has a like
+    if r.exists(post_id) and not r.sismember(username, post_id): 
+        likesCtr = json.loads(r.get(post_id))['likes'] + 1
+
+        newLike = {
+            "likes": likesCtr 
+        }
+        # Converts dict to string and sets it as 'value' of key 'test' in a Redis String
+        r.set(post_id, json.dumps(newLike))
+        # Add post to set of posts liked by user
+        r.sadd(username, post_id)
+        r.zadd(popularKey, {post_id: likesCtr})
+        return {"ALERT": alertMsg}
+    # User has already liked this post
+    elif r.exists(post_id) and r.sismember(username, post_id):
+        return {"ERROR": "You Already Liked This Post"}
+    # Post has not been liked by anyone
+    else:
+        newLike = {
+            "likes": 1
+        }
+        # Converts dict to string and sets it as 'value' of key 'test' in a Redis String
+        r.set(post_id, json.dumps(newLike))
+        r.sadd(username, post_id)
+        likes = 1
+        r.zadd(popularKey, {post_id: likes})
+        # Converts from string dict to dict and returns as JSON
+        return {"ALERT": alertMsg}
+
     # --- background process to check if ID is valid ---
     client.put(post_id) # inserts new job
     # - Process Running -
@@ -65,34 +94,6 @@ def likePost(
     if realID:
         client.delete(job) # ends jobs process
         # --- background process to check if ID is valid ---
-
-        # If post already has a like
-        if r.exists(post_id) and not r.sismember(username, post_id): 
-            likesCtr = json.loads(r.get(post_id))['likes'] + 1
-
-            newLike = {
-                "likes": likesCtr 
-            }
-            # Converts dict to string and sets it as 'value' of key 'test' in a Redis String
-            r.set(post_id, json.dumps(newLike))
-            # Add post to set of posts liked by user
-            r.sadd(username, post_id)
-            r.zadd(popularKey, {post_id: likesCtr})
-        # User has already liked this post
-        elif r.exists(post_id) and r.sismember(username, post_id):
-            return {"ERROR": "You Already Liked This Post"}
-        # Post has not been liked by anyone
-        else:
-            newLike = {
-                "likes": 1
-            }
-            # Converts dict to string and sets it as 'value' of key 'test' in a Redis String
-            r.set(post_id, json.dumps(newLike))
-            r.sadd(username, post_id)
-            likes = 1
-            r.zadd(popularKey, {post_id: likes})
-            # Converts from string dict to dict and returns as JSON
-            return {"ALERT": alertMsg}
     else:
         # Call worker program to remove the invalid like and send the user an email
         client.delete(job) # ends jobs process
