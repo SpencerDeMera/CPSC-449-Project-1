@@ -17,6 +17,7 @@ import socket
 import time
 from dotenv import load_dotenv
 import greenstalk
+from likesWorker import removeLike
 
 redisHost = "localhost"
 redisPort = 6379
@@ -48,6 +49,7 @@ def likePost(
     response
 ):  
     alertMsg = "Post: " + post_id + " Liked By: " + username
+    errMsg = "Post: " + post_id + " Does Not Exist. Post not Liked"
     port = os.environ.get('postAPI')
     domainName = socket.gethostbyname(socket.getfqdn())
     # connect greenstalk client
@@ -93,12 +95,13 @@ def likePost(
 
     if realID:
         client.delete(job) # ends jobs process
-        # --- background process to check if ID is valid ---
     else:
         # Call worker program to remove the invalid like and send the user an email
+        removeLike(username, post_id)
         client.delete(job) # ends jobs process
-        # --- background process to check if ID is valid ---
-    client.close()
+        client.close()
+        return {"ERROR": errMsg}
+    # --- background process to check if ID is valid ---
 
 # Get like count of post with ID 'post_id'
 @hug.get("/likes/getLikes:{post_id}")

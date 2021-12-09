@@ -14,3 +14,8 @@ popularKey = "popPosts"
 
 r = redis.Redis(host = redisHost, port = redisPort, decode_responses=True)
 
+def removeLike(username, like_id):
+    r.srem(username, like_id)
+    r.zrem(popularKey, like_id)
+    # Call Email File
+    return True

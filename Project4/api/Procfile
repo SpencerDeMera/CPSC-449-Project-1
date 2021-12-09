@@ -3,3 +3,5 @@ postAPI: gunicorn  --access-logfile  - --capture-output postAPI:__hug_wsgi__
 likesAPI: gunicorn  --access-logfile  - --capture-output likesAPI:__hug_wsgi__
 pollsAPI: gunicorn  --access-logfile  - --capture-output pollsAPI:__hug_wsgi__
 postConsumer: gunicorn  --access-logfile  - --capture-output postConsumer:__hug_wsgi__
+likesWorker: gunicorn  --access-logfile  - --capture-output likesWorker:__hug_wsgi__
+pollsWorker: gunicorn  --access-logfile  - --capture-output pollsWorker:__hug_wsgi__
