@@ -16,6 +16,7 @@ import os
 import socket
 import time
 from dotenv import load_dotenv
+import greenstalk
 
 redisHost = "localhost"
 redisPort = 6379
@@ -47,34 +48,55 @@ def likePost(
     response
 ):  
     alertMsg = "Post: " + post_id + " Liked By: " + username
-    
-    # If post already has a like
-    if r.exists(post_id) and not r.sismember(username, post_id): 
-        likesCtr = json.loads(r.get(post_id))['likes'] + 1
+    port = os.environ.get('postAPI')
+    domainName = socket.gethostbyname(socket.getfqdn())
+    # connect greenstalk client
+    client = greenstalk.Client(('127.0.0.1', 8000))
 
-        newLike = {
-            "likes": likesCtr 
-        }
-        # Converts dict to string and sets it as 'value' of key 'test' in a Redis String
-        r.set(post_id, json.dumps(newLike))
-        # Add post to set of posts liked by user
-        r.sadd(username, post_id)
-        r.zadd(popularKey, {post_id: likesCtr})
-    # User has already liked this post
-    elif r.exists(post_id) and r.sismember(username, post_id):
-        return {"ERROR": "You Already Liked This Post"}
-    # Post has not been liked by anyone
+    # --- background process to check if ID is valid ---
+    client.put(post_id) # inserts new job
+    # - Process Running -
+    job = client.reserve()
+    data = job.body # passes in post_id
+
+    url = "http://" + str(domainName) + ":" + str(port) + "/posts/isValid:" + str(post_id)
+    realID = requests.get(url).json()
+
+    if realID:
+        client.delete(job) # ends jobs process
+        # --- background process to check if ID is valid ---
+
+        # If post already has a like
+        if r.exists(post_id) and not r.sismember(username, post_id): 
+            likesCtr = json.loads(r.get(post_id))['likes'] + 1
+
+            newLike = {
+                "likes": likesCtr 
+            }
+            # Converts dict to string and sets it as 'value' of key 'test' in a Redis String
+            r.set(post_id, json.dumps(newLike))
+            # Add post to set of posts liked by user
+            r.sadd(username, post_id)
+            r.zadd(popularKey, {post_id: likesCtr})
+        # User has already liked this post
+        elif r.exists(post_id) and r.sismember(username, post_id):
+            return {"ERROR": "You Already Liked This Post"}
+        # Post has not been liked by anyone
+        else:
+            newLike = {
+                "likes": 1
+            }
+            # Converts dict to string and sets it as 'value' of key 'test' in a Redis String
+            r.set(post_id, json.dumps(newLike))
+            r.sadd(username, post_id)
+            likes = 1
+            r.zadd(popularKey, {post_id: likes})
+            # Converts from string dict to dict and returns as JSON
+            return {"ALERT": alertMsg}
     else:
-        newLike = {
-            "likes": 1
-        }
-        # Converts dict to string and sets it as 'value' of key 'test' in a Redis String
-        r.set(post_id, json.dumps(newLike))
-        r.sadd(username, post_id)
-        likes = 1
-        r.zadd(popularKey, {post_id: likes})
-        # Converts from string dict to dict and returns as JSON
-        return {"ALERT": alertMsg}
+        # Call worker program to remove the invalid like and send the user an email
+        client.delete(job) # ends jobs process
+        # --- background process to check if ID is valid ---
 
 # Get like count of post with ID 'post_id'
 @hug.get("/likes/getLikes:{post_id}")

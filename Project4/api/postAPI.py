@@ -56,6 +56,25 @@ def log(name=__name__, **kwargs):
 def healthy(response):
     return {"Posts Health Check": "Done"}
 
+# endpoint for checking if post is valid
+@hug.get("/posts/isValid:{post_id}")
+def isValid(
+    post_id: hug.types.text,
+    response,
+    db: sqlite
+):
+    # Checks if post_id is valid
+    posts = sqlite_utils.Database("./data/posts.db")
+    for row in posts.query(
+        "SELECT * FROM posts WHERE id=:postID",
+        {"postID": int(post_id)}
+    ):
+        # If post with post_id is real 
+        if row != None:
+            return True
+        else:
+            return False
+
 # User Timeline
 @hug.get("/posts/{username}/user")
 def getUserTimeline(response, username: hug.types.text, db: sqlite):
@@ -179,39 +198,38 @@ def newAsyncPost(
     port = os.environ.get('postConsumer')
     domainName = socket.gethostbyname(socket.getfqdn())
     # client = greenstalk.Client((domainName, port))
-    # client = greenstalk.Client(('127.0.0.1', 11300))
-    with greenstalk.Client(('127.0.0.1', 8000)) as client:
+    client = greenstalk.Client(('127.0.0.1', 8100))
 
-        # Gets count of rows already in table
-        for post in posts.query("SELECT P.id FROM posts P"):
-            ctr += 1
+    # Gets count of rows already in table
+    for post in posts.query("SELECT P.id FROM posts P"):
+        ctr += 1
 
-        # creates new user object with input data
-        ctr+=1
-        newAsyncPost = json.dumps({
-            "id": ctr,
-            "author_username": username,
-            "message": message,
-            "human_timestamp": str(ct),
-            "timestamp": ts,
-            "origin_URL": None
-        })
-        client.put(newAsyncPost) # inserts job 
+    # creates new user object with input data
+    ctr+=1
+    newAsyncPost = json.dumps({
+        "id": ctr,
+        "author_username": username,
+        "message": message,
+        "human_timestamp": str(ct),
+        "timestamp": ts,
+        "origin_URL": None
+    })
+    client.put(newAsyncPost) # inserts job 
 
-        # For Testing: should be done in postConsumer.py somehow
-        while True:
-            job = client.reserve()
-            print(job.body)
-            data = json.loads(job.body)
+    # For Testing: should be done in postConsumer.py somehow
+    job = client.reserve()
+    data = json.loads(job.body)
+    client.delete(job)
+    client.close()
 
-            try:
-                postsArr.insert(data)
-                newAsyncPost["id"] = postsArr.last_pk
-            except Exception as e:
-                response.status = hug.falcon.HTTP_409
-                return {"error": str(e)}
-                response.set_header("Location", f"/posts/{newPost['id']}")
-            return newAsyncPost
+    try:
+        postsArr.insert(data)
+        newAsyncPost["id"] = postsArr.last_pk
+    except Exception as e:
+        response.status = hug.falcon.HTTP_409
+        return {"error": str(e)}
+        response.set_header("Location", f"/posts/{newPost['id']}")
+    return newAsyncPost
 
 # repost functionality
 # ISSUE: broken
@@ -264,4 +282,4 @@ def repost(
         response.set_header("Location", f"/posts/{newRepost['id']}")
     return newRepost
 
-hug.API(__name__).http.serve(port=8000) # Force hug onto port 8000 # TESTING
+hug.API(__name__).http.serve(port=8100) # Force hug onto port 8000 # TESTING

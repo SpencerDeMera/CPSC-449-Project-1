@@ -95,6 +95,7 @@ $ cd ..                                                                # Gets yo
 `addUser(username, password, email, bio)`   | `POST /users/addUser`                                     | Adds a new user to database
 `followUser(username, following_username)`  | `POST /users/<username>/followUser/<following_username>`  | Follow a new user
 `getFollowing(username)`                    | `GET /users/<username>/getFollowing`                      | Get all usernames followed by given user
+`isValid(post_id)`                          | `GET /posts/isValid:<post_id>`                            | Check if post_id is a valid Post ID
 `getUserTimeline(username)`                 | `GET /posts/<username>/user`                              | Get timeline of all posts made by user
 `getHomeTimeline(username)`                 | `GET /posts/<username>/home`                              | Get timeline of all posts by user and users followed
 `getPublicTimeline()`                       | `GET /posts/public`                                       | Get timeline of all posts of every user
