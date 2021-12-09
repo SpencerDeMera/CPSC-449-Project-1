@@ -195,7 +195,7 @@ def newAsyncPost(
     ctr = 0
     ct = datetime.datetime.now()
     ts = ct.timestamp()
-    port = os.environ.get('postConsumer')
+    # port = os.environ.get('postConsumer')
     domainName = socket.gethostbyname(socket.getfqdn())
     # client = greenstalk.Client((domainName, port))
     client = greenstalk.Client(('127.0.0.1', 8100))
