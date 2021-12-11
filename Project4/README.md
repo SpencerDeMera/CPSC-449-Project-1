@@ -20,6 +20,8 @@ This project uses a variety of tools and services to power two RESTful back-end 
     * FILE bin/initPolls.py. Initilization scripts for polls service DynamoDB datastore.
     * FILES configs/userAPI.ini & postAPI.ini. Initilization files for SQLite DBs.
     * FILE configs/logging.ini. Initilization file for SQLite logging and configs.
+    * FILE postConsumer.py. Async job consumer file for consuming post queue jobs.
+    * FILES likesWorker.py & pollsWorker.py. Worker files to delete invalid instances of likes or polls.
 
 ## Installation
 Use the following to setup your environment:
@@ -99,7 +101,8 @@ $ cd ..                                                              # Gets you 
 `getUserTimeline(username)`                 | `GET /posts/<username>/user`                              | Get timeline of all posts made by user
 `getHomeTimeline(username)`                 | `GET /posts/<username>/home`                              | Get timeline of all posts by user and users followed
 `getPublicTimeline()`                       | `GET /posts/public`                                       | Get timeline of all posts of every user
-`newPost(author_username, message)`         | `POST /posts/<author_username>/newPost`                   | Add a new post
+`newPost(author_username, message, poll_id)`      | `POST /posts/<author_username>/newPost`                      | Add a new post (enter "none" for poll_id if no poll to include)
+`newAsyncPost(author_username, message, poll_id)` | ` POST /posts/async/<username>/newPost/attachPoll:<poll_id>` | Add new post asynchronously (enter "none" for poll_id if no poll to include)
 `repost(username,original_username,id)`     | `POST /posts/<username>/repost<author_username>&<id>`     | Repost a post from another users
 `likePost(username, post_id)`               | `POST /posts/<username>/like/<post_id>`                   | Like a post given its ID
 `getLikes(post_id)`                         | `GET /likes/getLikes:<post_id>`                           | Number of likes post has given its ID
@@ -108,10 +111,15 @@ $ cd ..                                                              # Gets you 
 `createNewPoll(username, question, resps.)` | `POST /polls/<username>/create`                           | Creates a new poll given username, question, and responses
 `vote(username, poll_id, respNum)`          | `POST /polls/<username>/vote/<poll_id>:<respNum>`         | Adds vote to response respNum & tracks who has voted 
 `getPollResults(poll_id)`                   | `GET /polls/results:<poll_id>`                            | Gets the results of a poll given its ID
+`isValid(poll_id)`                          | `GET /polls/isValid:<poll_id>`                            | Check if poll_id is a valid Poll ID
 `healthCheck()`                             |                                                           | Function for healthchecks
 `daemon_function(name)`                     |                                                           | Function for daemon thread function calling
 `main(self)`                                | `STARTUP`                                                 | Main function for service registry
-`registry(name, domainName, port)`          | `POST /register`                                         | Function for registering microservices
+`registry(name, domainName, port)`          | `POST /register`                                          | Function for registering microservices
+`newAsyncPost()`                            |                                                           | Create new posts asynchronously from the job queue
+`removeLike(username, like_id)`             |                                                           | Remove a like instance and send a notification email if its invalid
+`removePoll(username, poll_id)`             |                                                           | Remove a poll link instance and send a notification email if its invalid
+
 
 ## Resolved Issues 
 * Notable bug fixes

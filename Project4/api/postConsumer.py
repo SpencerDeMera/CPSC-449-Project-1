@@ -1,6 +1,5 @@
 import configparser
 import logging.config
-import hug
 import sqlite_utils
 import requests
 import datetime
@@ -18,22 +17,17 @@ config = configparser.ConfigParser()
 config.read("./configs/postAPI.ini")
 logging.config.fileConfig(config["logging"]["config"], disable_existing_loggers=False)
 
-# hug directive functions for SQLite initialization & logging
 #   Code provided by instructor
-@hug.directive()
 def sqlite(section="sqlite", key="dbfile", **kwargs):
     dbfile = config[section][key]
     return sqlite_utils.Database(dbfile)
 
-# hug directive functions for SQLite initialization & logging
 #   Code provided by instructor
-@hug.directive()
 def log(name=__name__, **kwargs):
     return logging.getLogger(name)
 
 #create new Post
 # Not sure if this is the right way to do this at all
-@hug.startup()
 def newAsyncPost(db: sqlite, response):
     postsArr = db["posts"]
     port = os.environ.get('postConsumer')
@@ -54,5 +48,3 @@ def newAsyncPost(db: sqlite, response):
             return {"error": str(e)}
             response.set_header("Location", f"/posts/{newPost['id']}")
         return data
-
-hug.API(__name__).http.serve(port=8600) # Force hug onto port 8600 # TESTING

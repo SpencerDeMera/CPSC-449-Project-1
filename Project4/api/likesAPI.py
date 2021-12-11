@@ -100,8 +100,8 @@ def likePost(
         removeLike(username, post_id)
         client.delete(job) # ends jobs process
         return {"ERROR": errMsg} 
-    # --- background process to check if ID is valid ---
     client.close()
+    # --- background process to check if ID is valid ---
 
 # Get like count of post with ID 'post_id'
 @hug.get("/likes/getLikes:{post_id}")

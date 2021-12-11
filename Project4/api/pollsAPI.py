@@ -255,3 +255,26 @@ def getPollResults(
     jsonData = json.loads(data)
 
     return jsonData
+
+# endpoint for checking if post is valid
+@hug.get("/polls/isValid:{poll_id}")
+def isValid(
+    poll_id: hug.types.text,
+    response,
+    db: sqlite
+):
+    # Connect DynamoDB
+    if not dynamodb: 
+        dynamodb = boto3.resource('dynamodb', region_name='us-west-2', endpoint_url="http://localhost:8000")
+
+    table = dynamodb.Table('Polls')
+
+    response = table.query(
+        KeyConditionExpression = Key('poll_id').eq(str(poll_id))
+    )
+    data = json.dumps(response['Items'])
+    # If post with poll_id is real 
+    if data != None:
+        return True
+    else:
+        return False

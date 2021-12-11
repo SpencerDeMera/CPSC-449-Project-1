@@ -15,6 +15,7 @@ import os
 import socket
 from dotenv import load_dotenv
 import greenstalk
+from pollsWorker import removePoll
 
 # Parser configuator function 
 #   Code provided by instructor
@@ -145,34 +146,55 @@ def getPublicTimeline(response, db: sqlite):
     return {"posts": postArr}
 
 #create new Post
-@hug.post("/posts/{username}/newPost",requires=hug.authentication.basic(userAuth))
+@hug.post("/posts/{username}/newPost/attachPoll:{poll_id}",requires=hug.authentication.basic(userAuth))
 def newPost(
     username: hug.types.text,
     message: hug.types.text,
+    poll_id: hug.types.text,
     response,
     db: sqlite,
 ):
     postsArr = db["posts"]
     posts = sqlite_utils.Database("./data/posts.db")
     ctr = 0
+    newPost = None
     ct = datetime.datetime.now()
     ts = ct.timestamp()
+    pollsPort = os.environ.get('pollsAPI')
+    domainName = socket.gethostbyname(socket.getfqdn())
+
+    url = "http://" + domainName + ":" + str(pollsPort) + "/polls/results:" + str(poll_id)
 
     # Gets count of rows already in table
     for post in posts.query("SELECT P.id FROM posts P"):
         ctr += 1
 
-    # creates new user object with input data
-    ctr+=1
-    newPost = {
-        "id": ctr,
-        "author_username": username,
-        "message": message,
-        "human_timestamp": str(ct),
-        "timestamp": ts,
-        "origin_URL": None,
-        "poll_URL": None
-    }
+    # if a poll_id was inserted
+    if poll_id != "none":
+        # creates new user object with input data
+        ctr+=1
+        newPost = {
+            "id": ctr,
+            "author_username": username,
+            "message": message,
+            "human_timestamp": str(ct),
+            "timestamp": ts,
+            "origin_URL": None,
+            "poll_URL": url
+        }
+    # else if poll_id was input as "none"
+    else:
+        # creates new user object with input data
+        ctr+=1
+        newPost = {
+            "id": ctr,
+            "author_username": username,
+            "message": message,
+            "human_timestamp": str(ct),
+            "timestamp": ts,
+            "origin_URL": None,
+            "poll_URL": None
+        }
 
     try:
         postsArr.insert(newPost)
@@ -184,38 +206,79 @@ def newPost(
     return newPost
 
 # ASYNC newPost method
-@hug.post("/posts/async/{username}/newPost")
+@hug.post("/posts/async/{username}/newPost/attachPoll:{poll_id}")
 def newAsyncPost(
     username: hug.types.text,
     message: hug.types.text,
+    poll_id: hug.types.text,
     response,
     db: sqlite,
 ):
     postsArr = db["posts"]
     posts = sqlite_utils.Database("./data/posts.db")
     ctr = 0
+    newAsyncPost = None
     ct = datetime.datetime.now()
     ts = ct.timestamp()
     # port = os.environ.get('postConsumer')
+    pollsPort = os.environ.get('pollsAPI')
     domainName = socket.gethostbyname(socket.getfqdn())
     # client = greenstalk.Client((domainName, port))
     client = greenstalk.Client(('127.0.0.1', 8100))
+
+    url = "http://" + domainName + ":" + str(pollsPort) + "/polls/results:" + str(poll_id)
+    errMsg = "Poll: " + poll_id + " Does Not Exist. Poll not linked"
 
     # Gets count of rows already in table
     for post in posts.query("SELECT P.id FROM posts P"):
         ctr += 1
 
-    # creates new user object with input data
-    ctr+=1
-    newAsyncPost = json.dumps({
-        "id": ctr,
-        "author_username": username,
-        "message": message,
-        "human_timestamp": str(ct),
-        "timestamp": ts,
-        "origin_URL": None,
-        "poll_URL": None
-    })
+    # if a poll_id was inserted
+    if poll_id != "none":
+        # creates new user object with input data
+        ctr+=1
+        newAsyncPost = json.dumps({
+            "id": ctr,
+            "author_username": username,
+            "message": message,
+            "human_timestamp": str(ct),
+            "timestamp": ts,
+            "origin_URL": None,
+            "poll_URL": url
+        })
+
+        # --- background process to check if ID is valid ---
+        client.put(poll_id) # inserts new job
+        # - Process Running -
+        job = client.reserve()
+        data = job.body # passes in post_id
+
+        url = "http://" + str(domainName) + ":" + str(pollsPort) + "/polls/isValid:" + str(poll_id)
+        realID = requests.get(url).json()
+
+        if realID:
+            client.delete(job) # ends jobs process
+        else:
+            # Call worker program to remove the invalid like and send the user an email
+            removePoll(username, poll_id)
+            client.delete(job) # ends jobs process
+            return {"ERROR": errMsg} 
+        client.close()
+        # --- background process to check if ID is valid ---
+    # else if poll_id was input as "none"
+    else:
+        # creates new user object with input data
+        ctr+=1
+        newAsyncPost = json.dumps({
+            "id": ctr,
+            "author_username": username,
+            "message": message,
+            "human_timestamp": str(ct),
+            "timestamp": ts,
+            "origin_URL": None,
+            "poll_URL": None
+        })
+
     client.put(newAsyncPost) # inserts job 
 
     # For Testing: should be done in postConsumer.py somehow
