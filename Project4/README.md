@@ -30,7 +30,7 @@ $ sudo apt install --yes python3-pip ruby-foreman httpie sqlite3     # Install p
 $ python3 -m pip install hug sqlite-utils                            # Install hug and Python sqlite-utils libraries
 # Log out then back in to ensure all PATH changes are established
 $ sudo apt install --yes haproxy gunicorn                            # Install production tools
-$ python3 -m pip install pyhton-dotenv                               # Installs tool for reading environment variables
+$ python3 -m pip install python-dotenv                               # Installs tool for reading environment variables
 
 # Install reids and DyanmoDB data stores
 # Redis
@@ -81,7 +81,7 @@ $ ./bin/foreman.sh                                                   # Starts th
 $ redis-server                                                       # Starts the redis server
 $ cd bin
 $ python3 initPolls.py                                               # Initialize the Polls table & create a default poll
-$ cd ..                                                                # Gets you back to the api directory
+$ cd ..                                                              # Gets you back to the api directory
 ```
 
 ## Running

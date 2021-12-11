@@ -170,7 +170,8 @@ def newPost(
         "message": message,
         "human_timestamp": str(ct),
         "timestamp": ts,
-        "origin_URL": None
+        "origin_URL": None,
+        "poll_URL": None
     }
 
     try:
@@ -212,15 +213,16 @@ def newAsyncPost(
         "message": message,
         "human_timestamp": str(ct),
         "timestamp": ts,
-        "origin_URL": None
+        "origin_URL": None,
+        "poll_URL": None
     })
     client.put(newAsyncPost) # inserts job 
 
     # For Testing: should be done in postConsumer.py somehow
-    job = client.reserve()
-    data = json.loads(job.body)
-    client.delete(job)
-    client.close()
+    # job = client.reserve()
+    # data = json.loads(job.body)
+    # client.delete(job)
+    # client.close()
 
     try:
         postsArr.insert(data)
@@ -270,7 +272,8 @@ def repost(
         "message": message,
         "human_timestamp": ct,
         "timestamp": ts,
-        "origin_URL": origin
+        "origin_URL": None,
+        "poll_URL": None
     }
 
     try:

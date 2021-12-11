@@ -99,9 +99,9 @@ def likePost(
         # Call worker program to remove the invalid like and send the user an email
         removeLike(username, post_id)
         client.delete(job) # ends jobs process
-        client.close()
-        return {"ERROR": errMsg}
+        return {"ERROR": errMsg} 
     # --- background process to check if ID is valid ---
+    client.close()
 
 # Get like count of post with ID 'post_id'
 @hug.get("/likes/getLikes:{post_id}")
