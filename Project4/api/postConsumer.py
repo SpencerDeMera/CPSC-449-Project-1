@@ -1,3 +1,4 @@
+import hug
 import configparser
 import logging.config
 import sqlite_utils
