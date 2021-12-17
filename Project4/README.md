@@ -101,8 +101,8 @@ $ cd ..                                                              # Gets you 
 `getUserTimeline(username)`                 | `GET /posts/<username>/user`                              | Get timeline of all posts made by user
 `getHomeTimeline(username)`                 | `GET /posts/<username>/home`                              | Get timeline of all posts by user and users followed
 `getPublicTimeline()`                       | `GET /posts/public`                                       | Get timeline of all posts of every user
-`newPost(author_username, message, poll_id)`      | `POST /posts/<author_username>/newPost`                      | Add a new post (enter "none" for poll_id if no poll to include)
-`newAsyncPost(author_username, message, poll_id)` | ` POST /posts/async/<username>/newPost/attachPoll:<poll_id>` | Add new post asynchronously (enter "none" for poll_id if no poll to include)
+`newPost(author_username, message)`         | `POST /posts/<author_username>/newPost`                      | Add a new post
+`newAsyncPost(author_username, message)`    | ` POST /posts/async/<username>/newPost/attachPoll:<poll_id>` | Add new post asynchronously & add link to pollResults() to include a poll
 `repost(username,original_username,id)`     | `POST /posts/<username>/repost<author_username>&<id>`     | Repost a post from another users
 `likePost(username, post_id)`               | `POST /posts/<username>/like/<post_id>`                   | Like a post given its ID
 `getLikes(post_id)`                         | `GET /likes/getLikes:<post_id>`                           | Number of likes post has given its ID
