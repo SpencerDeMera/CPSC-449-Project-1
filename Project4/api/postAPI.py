@@ -231,7 +231,7 @@ def newAsyncPost(
     data = job.body # passes in post_id
 
     url = "http://" + str(domainName) + ":" + str(pollsPort) + "/polls/isValid:" + str(poll_id)
-    realID = requests.get(url).json()
+    realID = requests.get(url)
 
     if realID:
         client.delete(job) # ends jobs process

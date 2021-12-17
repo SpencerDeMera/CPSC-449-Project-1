@@ -4,7 +4,7 @@
 ## [Project 4 GitHub](https://github.com/SpencerDeMera/CPSC-449-Projects/tree/main/Project4)
 
 ## Project Description:
-This project uses a variety of tools and services to power two RESTful back-end services that facilitate user interaction and communication via digital blogging. Users can view three different timelines, follow other users, create new posts, users can be added, and repost other posts. Additionally, users can now like posts and conduct polls while being able to view the results/metadata of both.
+This project uses a variety of tools and services to power two RESTful back-end services that facilitate user interaction and communication via digital blogging. Users can view three different timelines, follow other users, create new posts, users can be added, and repost other posts. Additionally, users can now like posts and conduct polls while being able to view the results/metadata of both. We also attempted to add Message Queuing functionality that allows for asynchronous processing.
 
 ## Contents:
 * File README.md. README file for the project.
@@ -137,7 +137,7 @@ $ cd ..                                                              # Gets you 
         * addUser will output JSON with the number of users instead of username in `username` when displayed after run
         * The actual new user object created by addUser will actually have the created username value in `username`
             * Not sure what is causing said issue, insufficent time to resolve issue
-    * Foreman is non-operable on both our WSL & Tuffix installations regardless of restarts OR reinstalls
+    * (Project 3) Foreman is non-operable on both our WSL & Tuffix installations regardless of restarts OR reinstalls
         * All components work separately and together when using `hug -f <filename>` commands
             * There is no guarentee that all will work with foreman together unfortunately
             * Insufficient information available & time to complete
@@ -170,3 +170,8 @@ $ cd ..                                                              # Gets you 
     * [Pyhton OS Functions](https://docs.python.org/3/library/os.html#os.environ)
     * [Python dotenv](https://pypi.org/project/python-dotenv/)
     * [Python Healthchecks Examples](https://pypi.org/project/healthcheck-python/)
+    * [Official GreenStalk Documentation](https://greenstalk.readthedocs.io/en/stable/index.html)
+    * [HTTP Requests for Humans](https://docs.python-requests.org/en/latest/)
+    * [Python Text Search](https://docs.python.org/3/library/re.html#re.findall)
+    * [Multilanguage URL Search Expressions](https://urlregex.com/)
+    * [SMTP Server Debugging](https://opensourcehacker.com/2013/04/26/debug-smtp-server-one-liner/)

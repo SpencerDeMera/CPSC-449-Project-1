@@ -261,7 +261,7 @@ def getPollResults(
 def isValid(
     poll_id: hug.types.text,
     response,
-    db: sqlite
+    dynamodb=None
 ):
     # Connect DynamoDB
     if not dynamodb: 
