@@ -44,15 +44,15 @@ def userAuth(username, password):
             return False
 
 # Startup function
-# @hug.startup()
-# def startup(self):
-#     time.sleep(10)
-#     load_dotenv()
-#     port = os.environ.get('userAPI')
-#     srvcPort = os.environ.get('srvcRegAPI')
-#     domainName = socket.gethostbyname(socket.getfqdn())
-#     pload = {'name': 'users', 'domainName': domainName, 'port': port}
-#     r = requests.post("http://" + domainName + ":" + srvcPort + "/register", data=pload)
+@hug.startup()
+def startup(self):
+    time.sleep(10)
+    load_dotenv()
+    port = os.environ.get('userAPI')
+    srvcPort = os.environ.get('srvcRegAPI')
+    domainName = socket.gethostbyname(socket.getfqdn())
+    pload = {'name': 'users', 'domainName': domainName, 'port': port}
+    r = requests.post("http://" + domainName + ":" + srvcPort + "/register", data=pload)
 
 # Health check function
 @hug.get("/health")
@@ -136,3 +136,22 @@ def getFollowing(
     except sqlite_utils.db.NotFoundError:
         response.status = hug.falcon.HTTP_404
     return followingUsers
+
+@hug.get("/users/{username}/getEmail")
+def getEmail(
+    username: hug.types.text,
+    response,
+    db: sqlite
+):
+    email = None
+    try:
+        users = sqlite_utils.Database("./data/users.db")
+        # get all posts from user in DESC order according to timestamp
+        for row in posts.query(
+            "SELECT email_address FROM users WHERE username=:userAuth",
+            {"userAuth": username}
+        ):
+            email = row
+    except sqlite_utils.db.NotFoundError:
+        response.status = hug.falcon.HTTP_404
+    return email

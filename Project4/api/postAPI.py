@@ -38,20 +38,20 @@ def log(name=__name__, **kwargs):
     return logging.getLogger(name)
 
 # Startup function
-# @hug.startup()
-# def startup(self):
-#     time.sleep(10)
-#     load_dotenv()
-#     ctr = 0
-#     portCtr = os.environ.get('PostAPI_num')
-#     port = os.environ.get('postAPI')
-#     srvcPort = os.environ.get('srvcRegAPI')
-#     domainName = socket.gethostbyname(socket.getfqdn())
-#     while ctr < int(portCtr):
-#         pload = {'name': 'posts', 'domainName': domainName, 'port': port}
-#         r = requests.post(domainName + ":" + srvcPort + "/register", data=pload)
-#         port += 1
-#         ctr += 1
+@hug.startup()
+def startup(self):
+    time.sleep(10)
+    load_dotenv()
+    ctr = 0
+    portCtr = os.environ.get('PostAPI_num')
+    port = os.environ.get('postAPI')
+    srvcPort = os.environ.get('srvcRegAPI')
+    domainName = socket.gethostbyname(socket.getfqdn())
+    while ctr < int(portCtr):
+        pload = {'name': 'posts', 'domainName': domainName, 'port': port}
+        r = requests.post(domainName + ":" + srvcPort + "/register", data=pload)
+        port += 1
+        ctr += 1
 
 # Health check function
 @hug.get("/health")
@@ -74,8 +74,7 @@ def isValid(
         # If post with post_id is real 
         if row != None:
             return True
-        else:
-            return False
+    return False
 
 # User Timeline
 @hug.get("/posts/{username}/user")
@@ -200,7 +199,7 @@ def newAsyncPost(
     pollsPort = os.environ.get('pollsAPI')
     domainName = socket.gethostbyname(socket.getfqdn())
     # client = greenstalk.Client((domainName, port))
-    client = greenstalk.Client(('127.0.0.1', 8100))
+    client = greenstalk.Client(('127.0.0.1', 11300))
 
     # extracts url from text of message
     url = re.findall(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', message) 
@@ -245,19 +244,6 @@ def newAsyncPost(
     # inserts job inside Message Queue and is passed to postConsumer.py
     client.put(newAsyncPost)
 
-    # For Testing: should be done in postConsumer.py somehow
-    # job = client.reserve()
-    # data = json.loads(job.body)
-    # client.delete(job)
-    # client.close()
-
-    # try:
-    #     postsArr.insert(data)
-    #     newAsyncPost["id"] = postsArr.last_pk
-    # except Exception as e:
-    #     response.status = hug.falcon.HTTP_409
-    #     return {"error": str(e)}
-    #     response.set_header("Location", f"/posts/{newPost['id']}")
     return newAsyncPost
 
 # repost functionality
@@ -311,5 +297,3 @@ def repost(
         return {"error": str(e)}
         response.set_header("Location", f"/posts/{newRepost['id']}")
     return newRepost
-
-hug.API(__name__).http.serve(port=8100) # Force hug onto port 8000 # TESTING

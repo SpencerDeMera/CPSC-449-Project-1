@@ -273,8 +273,10 @@ def isValid(
         KeyConditionExpression = Key('poll_id').eq(str(poll_id))
     )
     data = json.dumps(response['Items'])
+    jsonData = json.loads(data)
+    
     # If post with poll_id is real 
-    if data != None:
+    if jsonData.length != 0:
         return True
     else:
         return False

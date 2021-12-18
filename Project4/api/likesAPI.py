@@ -53,7 +53,7 @@ def likePost(
     port = os.environ.get('postAPI')
     domainName = socket.gethostbyname(socket.getfqdn())
     # connect greenstalk client
-    client = greenstalk.Client(('127.0.0.1', 8000))
+    client = greenstalk.Client(('127.0.0.1', 11300))
 
     # If post already has a like
     if r.exists(post_id) and not r.sismember(username, post_id): 
@@ -68,9 +68,6 @@ def likePost(
         r.sadd(username, post_id)
         r.zadd(popularKey, {post_id: likesCtr})
         return {"ALERT": alertMsg}
-    # User has already liked this post
-    elif r.exists(post_id) and r.sismember(username, post_id):
-        return {"ERROR": "You Already Liked This Post"}
     # Post has not been liked by anyone
     else:
         newLike = {
