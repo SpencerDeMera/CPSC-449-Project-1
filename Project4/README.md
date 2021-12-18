@@ -23,6 +23,7 @@ This project uses a variety of tools and services to power two RESTful back-end 
     * FILE postConsumer.py. Async job consumer file for consuming post queue jobs.
     * FILES likesWorker.py & pollsWorker.py. Worker files to delete invalid instances of likes or polls.
     * FILE email.py. Email SMTP debug server for sending notification emails.
+    * FILES hey_output/syncPost.csv & hey_output/asyncPost.csv. CSV output files from `hey` load tests on sync and async newPost endpoints
 
 ## Installation
 Use the following to setup your environment:
@@ -123,6 +124,13 @@ $ cd ..                                                              # Gets you 
 `removePoll(username, poll_id)`             |                                                           | Remove a poll link instance and send a notification email if its invalid
 `email_notify(username, id)`                |                                                           | Takes data on an invalid action and sends an email notification
 
+## Perforance
+    * **Aside from 404/405 error code issues**
+    * `hey` load tests show Asynchronous newPost endpoint is slower than synchronous
+        * Overall performance Summary:
+            * Synchronous and Asynchronous differ by 3 - 5 seconds on average for slowest time
+            * Synchronous and Asynchronous differ by 0.2 - 0.4 seconds on average for fastest time
+        * Histogram and Latency distributions reflect same differences relative to their own values
 
 ## Resolved Issues 
 * Notable bug fixes
@@ -136,16 +144,24 @@ $ cd ..                                                              # Gets you 
 
 ## Issues & Incomplete Functionalities
 * Issues
-    * Number in place of `username` value on JSON output after new user is created
-        * addUser will output JSON with the number of users instead of username in `username` when displayed after run
-        * The actual new user object created by addUser will actually have the created username value in `username`
-            * Not sure what is causing said issue, insufficent time to resolve issue
-    * (Project 3) Foreman is non-operable on both our WSL & Tuffix installations regardless of restarts OR reinstalls
+    * (project 4): Greenstalk message queue issues
+        * Unsure if implementation of Greenstalk message queue for verifying poll and post ID's is correct / desired one
+    * (project 4): Some endpoints from Project 3 appear to be non-functional and/or broken when accessed
+        * Code was never changed yet issue persists with no indication of why
+            * Issue showed up Friday afternoon 12/17/2021 without explanation
+    * (Project 3): Foreman is non-operable on both our WSL & Tuffix installations regardless of restarts OR reinstalls
         * All components work separately and together when using `hug -f <filename>` commands
             * There is no guarentee that all will work with foreman together unfortunately
             * Insufficient information available & time to complete
+    * (Project 2): Number in place of `username` value on JSON output after new user is created
+        * addUser will output JSON with the number of users instead of username in `username` when displayed after run
+        * The actual new user object created by addUser will actually have the created username value in `username`
+            * Not sure what is causing said issue, insufficent time to resolve issue
 * Incomplete functions
-    * Repost code is fully implemented but the server throws HTTP 405 upon POST request
+    * (project 4): Unsure of functionality of newAsyncPost() endpoint
+        * We could not find a way / understand how to facilitate or verify the passing of message queue to postConsumer.py
+            * Implementation theoretically works but we were not able to test
+    * (Project 2): Repost code is fully implemented but the server throws HTTP 405 upon POST request
         * Insufficient time to resolve issue
 
 ## Credits
