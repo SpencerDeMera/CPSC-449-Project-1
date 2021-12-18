@@ -7,7 +7,7 @@ import socket
 import time
 from dotenv import load_dotenv
 import greenstalk
-from email import email_notify
+from emailDebug import email_notify
 
 redisHost = "localhost"
 redisPort = 6379

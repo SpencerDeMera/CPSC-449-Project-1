@@ -9,7 +9,7 @@ import socket
 import time
 from dotenv import load_dotenv
 import requests
-from email import email_notify
+from emailDebug import email_notify
 
 dynamodb = boto3.client('dynamodb', region_name='us-west-2', endpoint_url="http://localhost:8000")
 
@@ -27,5 +27,5 @@ def removePoll(username, poll_id):
         },
     )
     id = 'p' + poll_id
-    email_notify(username, id)
+    email_notify(username, str(id))
     return True

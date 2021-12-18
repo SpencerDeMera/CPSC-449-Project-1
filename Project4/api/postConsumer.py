@@ -42,7 +42,7 @@ def newAsyncPost(db: sqlite, response):
     port = os.environ.get('postConsumer')
     domainName = socket.gethostbyname(socket.getfqdn())
     # client = greenstalk.Client((domainName, port))
-    client = greenstalk.Client(('127.0.0.1', 8600))
+    client = greenstalk.Client(('127.0.0.1', 11300))
 
     job = client.reserve()
     print(job.body)
