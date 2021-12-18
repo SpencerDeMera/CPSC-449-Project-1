@@ -183,7 +183,7 @@ def newPost(
     return newPost
 
 # ASYNC newPost method
-@hug.post("/posts/async/{username}/newPost")
+@hug.post("/posts/async/{username}/newPost",requires=hug.authentication.basic(userAuth))
 def newAsyncPost(
     username: hug.types.text,
     message: hug.types.text,
