@@ -38,20 +38,20 @@ def log(name=__name__, **kwargs):
     return logging.getLogger(name)
 
 # Startup function
-@hug.startup()
-def startup(self):
-    time.sleep(10)
-    load_dotenv()
-    ctr = 0
-    portCtr = os.environ.get('PostAPI_num')
-    port = os.environ.get('postAPI')
-    srvcPort = os.environ.get('srvcRegAPI')
-    domainName = socket.gethostbyname(socket.getfqdn())
-    while ctr < int(portCtr):
-        pload = {'name': 'posts', 'domainName': domainName, 'port': port}
-        r = requests.post(domainName + ":" + srvcPort + "/register", data=pload)
-        port += 1
-        ctr += 1
+# @hug.startup()
+# def startup(self):
+#     time.sleep(10)
+#     load_dotenv()
+#     ctr = 0
+#     portCtr = os.environ.get('PostAPI_num')
+#     port = os.environ.get('postAPI')
+#     srvcPort = os.environ.get('srvcRegAPI')
+#     domainName = socket.gethostbyname(socket.getfqdn())
+#     while ctr < int(portCtr):
+#         pload = {'name': 'posts', 'domainName': domainName, 'port': port}
+#         r = requests.post(domainName + ":" + srvcPort + "/register", data=pload)
+#         port += 1
+#         ctr += 1
 
 # Health check function
 @hug.get("/health")
