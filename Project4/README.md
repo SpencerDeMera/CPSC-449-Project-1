@@ -22,6 +22,7 @@ This project uses a variety of tools and services to power two RESTful back-end 
     * FILE configs/logging.ini. Initilization file for SQLite logging and configs.
     * FILE postConsumer.py. Async job consumer file for consuming post queue jobs.
     * FILES likesWorker.py & pollsWorker.py. Worker files to delete invalid instances of likes or polls.
+    * FILE email.py. Email SMTP debug server for sending notification emails.
 
 ## Installation
 Use the following to setup your environment:
@@ -97,6 +98,7 @@ $ cd ..                                                              # Gets you 
 `addUser(username, password, email, bio)`   | `POST /users/addUser`                                     | Adds a new user to database
 `followUser(username, following_username)`  | `POST /users/<username>/followUser/<following_username>`  | Follow a new user
 `getFollowing(username)`                    | `GET /users/<username>/getFollowing`                      | Get all usernames followed by given user
+`getEmail(username)`                        | `GET /users/<username>/getEmail`                          | Gets email of user
 `isValid(post_id)`                          | `GET /posts/isValid:<post_id>`                            | Check if post_id is a valid Post ID
 `getUserTimeline(username)`                 | `GET /posts/<username>/user`                              | Get timeline of all posts made by user
 `getHomeTimeline(username)`                 | `GET /posts/<username>/home`                              | Get timeline of all posts by user and users followed
@@ -119,6 +121,7 @@ $ cd ..                                                              # Gets you 
 `newAsyncPost()`                            |                                                           | Create new posts asynchronously from the job queue
 `removeLike(username, like_id)`             |                                                           | Remove a like instance and send a notification email if its invalid
 `removePoll(username, poll_id)`             |                                                           | Remove a poll link instance and send a notification email if its invalid
+`email_notify(username, id)`                |                                                           | Takes data on an invalid action and sends an email notification
 
 
 ## Resolved Issues 
