@@ -32,7 +32,7 @@ def startup(self):
     load_dotenv()
     port = os.environ.get('likesAPI')
     srvcPort = os.environ.get('srvcRegAPI')
-    domainName = socket.gethostbyname(socket.getfqdn())
+    domainName = 'localhost'
     pload = {'name': 'likes', 'domainName': domainName, 'port': port}
     r = requests.post(domainName + ":" + srvcPort + "/register", data=pload)
 
@@ -67,7 +67,7 @@ def likePost(
         # Add post to set of posts liked by user
         r.sadd(username, post_id)
         r.zadd(popularKey, {post_id: likesCtr})
-        return {"ALERT": alertMsg}
+        print(alertMsg)
     # Post has not been liked by anyone
     else:
         newLike = {
@@ -79,7 +79,8 @@ def likePost(
         likes = 1
         r.zadd(popularKey, {post_id: likes})
         # Converts from string dict to dict and returns as JSON
-        return {"ALERT": alertMsg}
+        print(alertMsg)
+
 
     # --- background process to check if ID is valid ---
     client.put(post_id) # inserts new job
@@ -87,7 +88,7 @@ def likePost(
     job = client.reserve()
     data = job.body # passes in post_id
 
-    url = "http://" + str(domainName) + ":" + str(port) + "/posts/isValid:" + str(post_id)
+    url = "http://" + domainName + ":" + str(port) + "/posts/isValid:" + str(post_id)
     realID = requests.get(url)
 
     if realID:
